@@ -1,4 +1,14 @@
-[gd_scene format=3 uid="uid://8gmboeudw2na"]
+[gd_scene load_steps=4 format=3 uid="uid://8gmboeudw2na"]
+
+[ext_resource type="Script" uid="uid://yvwbxhcqkju5" path="res://assets/script/TitleBackground.gd" id="1_ak2if"]
+
+[sub_resource type="Gradient" id="Gradient_1s85s"]
+colors = PackedColorArray(0, 0, 0, 1, 0.0825, 0.13200001, 0.33, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v6p8y"]
+gradient = SubResource("Gradient_1s85s")
+fill_from = Vector2(0.4957265, 0.012820513)
+fill_to = Vector2(0.52136755, 1)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -7,14 +17,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ak2if")
 
-[node name="Backgorund" type="ColorRect" parent="."]
-layout_mode = 0
+[node name="NightBackground" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.03529412, 0.047058824, 0.1254902, 1)
+texture = SubResource("GradientTexture2D_v6p8y")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.8
+autostart = true
+
+[node name="ShapesContainer" type="Node2D" parent="."]
 
 [node name="Title" type="VBoxContainer" parent="."]
 layout_mode = 1
