@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bofj13j31aa44"]
+
+[node name="Circle" type="Node2D"]
+metadata/position = Vector2(0, 0)
+metadata/radius = 0.0
+metadata/Color = Color(0, 0, 0, 1)
