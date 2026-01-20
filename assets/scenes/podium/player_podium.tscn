@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8448rmoaatik"]
+
+[ext_resource type="Script" uid="uid://b70bbfkdo1kpd" path="res://assets/scenes/podium/PlayerPodium.cs" id="1_7m5lo"]
+
+[node name="PlayerPodium" type="Node3D"]
+script = ExtResource("1_7m5lo")
+
+[node name="PodiumMesh" type="MeshInstance3D" parent="."]
+
+[node name="CharacterSpawn" type="Node3D" parent="."]

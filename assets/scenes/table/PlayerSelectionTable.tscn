@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2lgyckjkv2pf"]
+
+[ext_resource type="Script" uid="uid://b70bbfkdo1kpd" path="res://assets/scenes/podium/PlayerPodium.cs" id="1_v2gpw"]
+[ext_resource type="Script" uid="uid://dwb5onu00y6pc" path="res://assets/ui/PlayerCountMenu.cs" id="2_rbrkk"]
+[ext_resource type="PackedScene" uid="uid://djg6g25v5s6lu" path="res://assets/scenes/cards/CharacterCard.tscn" id="3_h8w8b"]
+
+[node name="PlayerSelectionTable" type="Node3D"]
+script = ExtResource("1_v2gpw")
+
+[node name="PodiumsContainer" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+
+[node name="TableMesh" type="MeshInstance3D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerCountMenu" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_rbrkk")
+
+[node name="CharacterCardsContainer" type="Control" parent="CanvasLayer/PlayerCountMenu"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CharacterCard" parent="CanvasLayer/PlayerCountMenu/CharacterCardsContainer" instance=ExtResource("3_h8w8b")]
