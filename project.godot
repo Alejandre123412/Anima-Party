@@ -12,12 +12,9 @@ config_version=5
 
 config/name="Anima Party"
 run/main_scene="uid://8gmboeudw2na"
-<<<<<<< HEAD
-config/features=PackedStringArray("4.5", "Forward Plus")
-=======
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
->>>>>>> e7cd25f12d21a8954d276b1a63f95ceac6684fd7
 config/icon="res://icon.svg"
+<<<<<<<HEADconfig/features=PackedStringArray("4.5", "Forward Plus")
 
 [display]
 

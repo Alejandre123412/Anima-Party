@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://geaikplh4fui"]
+
+[ext_resource type="Script" uid="uid://deeag3q5ijokp" path="res://assets/scenes/player/Player.cs" id="1_1o8ol"]
+
+[node name="Player" type="Node3D"]
+script = ExtResource("1_1o8ol")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+radius = 0.35
+height = 0.15
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
