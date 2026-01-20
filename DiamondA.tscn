@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://boiprx07ltjtb"]
+
+[node name="DiamondA" type="Control"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3.1999998, 3.1999998)
+
+[node name="Diamond" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 29.284271
+offset_top = -28.0
+offset_right = 69.28427
+offset_bottom = 12.0
+rotation = 0.7853982
+color = Color(0.13600002, 0.46920004, 0.85, 1)
+
+[node name="Support" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 9.284271
+offset_top = 10.0
+offset_right = 49.28427
+offset_bottom = 15.0
+color = Color(0.34, 0.34, 0.34, 1)
+
+[node name="LegL" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 11.284267
+offset_top = 11.000006
+offset_right = 13.784267
+offset_bottom = 34.000008
+rotation = 0.20943952
+color = Color(0.34, 0.34, 0.34, 1)
+
+[node name="LegR" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 43.28427
+offset_top = 11.000002
+offset_right = 45.78427
+offset_bottom = 34.0
+rotation = -0.20943952
+color = Color(0.34, 0.34, 0.34, 1)

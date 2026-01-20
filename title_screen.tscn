@@ -1,0 +1,80 @@
+[gd_scene load_steps=4 format=3 uid="uid://8gmboeudw2na"]
+
+[ext_resource type="Script" uid="uid://yvwbxhcqkju5" path="res://assets/script/TitleBackground.gd" id="1_ak2if"]
+
+[sub_resource type="Gradient" id="Gradient_1s85s"]
+colors = PackedColorArray(0, 0, 0, 1, 0.0825, 0.13200001, 0.33, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v6p8y"]
+gradient = SubResource("Gradient_1s85s")
+fill_from = Vector2(0.4957265, 0.012820513)
+fill_to = Vector2(0.52136755, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ak2if")
+
+[node name="NightBackground" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_v6p8y")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.8
+autostart = true
+
+[node name="ShapesContainer" type="Node2D" parent="."]
+
+[node name="Title" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -204.5
+offset_top = -234.5
+offset_right = 204.5
+offset_bottom = 234.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Title"]
+custom_minimum_size = Vector2(219, 413)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.27416673, 0, 0.47, 1)
+theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/shadow_outline_size = 12
+theme_override_font_sizes/font_size = 150
+text = "Anima Party"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Title"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 150
+
+[node name="WhatToPress" type="Label" parent="Title/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.7413847, 0.7413847, 0.7413844, 1)
+theme_override_font_sizes/font_size = 30
+text = "Presione L y R para empezar"
+horizontal_alignment = 1
+vertical_alignment = 2
