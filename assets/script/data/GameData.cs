@@ -1,6 +1,7 @@
 using Godot;
 using System.Collections.Generic;
 
+namespace AnimaParty.assets.script.data;
 public partial class GameData : Node
 {
     // Lista de jugadores

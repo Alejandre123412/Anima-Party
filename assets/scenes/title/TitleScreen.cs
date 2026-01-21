@@ -1,6 +1,6 @@
 using Godot;
 using System;
-
+namespace AnimaParty.assets.scenes.title;
 public partial class TitleScreen : Node
 {
 

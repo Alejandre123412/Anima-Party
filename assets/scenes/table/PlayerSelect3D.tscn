@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://c2lgyckjkv2pf"]
 
-[ext_resource type="Script" uid="uid://dkas4l2svkd77" path="res://assets/script/ui/ArrowButton.cs" id="1_127mn"]
+[ext_resource type="Script" uid="uid://b4hhqepulvfrl" path="res://assets/script/ui/ControlButon3D.cs" id="1_127mn"]
 
 [sub_resource type="CSharpScript" id="CSharpScript_w0dnd"]
 script/source = "using Godot;
@@ -102,6 +102,7 @@ material = SubResource("StandardMaterial3D_0ej1a")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4127637, -0.55812126)
 
 [node name="PlayerCountPanel" type="Node3D" parent="."]
+script = ExtResource("1_127mn")
 
 [node name="Monitor" type="Node3D" parent="PlayerCountPanel"]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, -0.026507497, 0.03692299)
@@ -110,66 +111,56 @@ transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70
 transform = Transform3D(0.9762133, 0, 0, 0, 0.7127045, 0, 0, 0, 0.08908806, 0, 0, 0.037190795)
 mesh = SubResource("BoxMesh_ee4a8")
 
-[node name="Label3D" type="Label3D" parent="PlayerCountPanel/Monitor"]
+[node name="PlayerCount" type="Label3D" parent="PlayerCountPanel/Monitor"]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, -0.0020715892, 0.110129684)
 text = "1"
 font_size = 67
 
-[node name="ButtonLeft" type="Node3D" parent="PlayerCountPanel"]
+[node name="BtnL" type="Area3D" parent="PlayerCountPanel"]
 transform = Transform3D(1, 0, 0, 0, 0.7071067, -0.7071067, 0, 0.7071067, 0.7071067, -0.99481106, 0, 0.010591596)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="PlayerCountPanel/ButtonLeft"]
-collision_layer = 0
-collision_mask = 0
-script = ExtResource("1_127mn")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCountPanel/ButtonLeft/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCountPanel/BtnL"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00091552734, -0.1494751, 0.0020446852)
 shape = SubResource("BoxShape3D_127mn")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="PlayerCountPanel/ButtonLeft/StaticBody3D"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="PlayerCountPanel/BtnL"]
 radius = 0.2
 height = 0.1
 sides = 32
 material = SubResource("StandardMaterial3D_7espu")
 
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="PlayerCountPanel/ButtonLeft/StaticBody3D"]
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="PlayerCountPanel/BtnL"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08511159, 0)
 radius = 0.15
 height = 0.2
 sides = 32
 material = SubResource("StandardMaterial3D_587gy")
 
-[node name="Label3D" type="Label3D" parent="PlayerCountPanel/ButtonLeft/StaticBody3D"]
+[node name="Label3D" type="Label3D" parent="PlayerCountPanel/BtnL"]
 transform = Transform3D(1, 0, 0, 0, -5.9604645e-08, -0.99999994, 0, 0.99999994, -5.9604645e-08, 0, 0.18692023, 0)
 text = "<"
 
-[node name="ButtonRight" type="Node3D" parent="PlayerCountPanel"]
-transform = Transform3D(1, 0, 0, 0, 0.7071067, -0.7071067, 0, 0.7071067, 0.7071067, 0.9765817, 0, 0.022463799)
+[node name="BtnR" type="Area3D" parent="PlayerCountPanel/BtnL"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9713928, 0.008394916, 0.008394916)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="PlayerCountPanel/ButtonRight"]
-collision_layer = 0
-collision_mask = 0
-script = ExtResource("1_127mn")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCountPanel/ButtonRight/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCountPanel/BtnL/BtnR"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0014266968, -0.13482668, -0.0014953502)
 shape = SubResource("BoxShape3D_ee4a8")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="PlayerCountPanel/ButtonRight/StaticBody3D"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="PlayerCountPanel/BtnL/BtnR"]
 radius = 0.2
 height = 0.1
 sides = 32
 material = SubResource("StandardMaterial3D_grhcm")
 
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="PlayerCountPanel/ButtonRight/StaticBody3D"]
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="PlayerCountPanel/BtnL/BtnR"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08555825, 0)
 radius = 0.15
 height = 0.2
 sides = 32
 material = SubResource("StandardMaterial3D_hyptb")
 
-[node name="Label3D" type="Label3D" parent="PlayerCountPanel/ButtonRight/StaticBody3D"]
+[node name="Label3D" type="Label3D" parent="PlayerCountPanel/BtnL/BtnR"]
 transform = Transform3D(1, 0, 0, 0, -5.9604645e-08, -0.99999994, 0, 0.99999994, -5.9604645e-08, 0, 0.18755043, 3.7252903e-09)
 text = ">"
 

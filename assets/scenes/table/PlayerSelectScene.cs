@@ -1,10 +1,12 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using AnimaParty.assets.scenes.player;
 
+namespace AnimaParty.assets.scenes.table;
 public partial class PlayerSelectScene : Node3D
 {
-    [Export] private PackedScene PlayerScene;
+    [Export] private PackedScene _playerScene;
 
     private Node3D _playersRoot;
     private List<Player> _players = new();
@@ -24,7 +26,7 @@ public partial class PlayerSelectScene : Node3D
     {
         for (int i = 0; i < MaxPlayers; i++)
         {
-            var player = PlayerScene.Instantiate<Player>();
+            var player = _playerScene.Instantiate<Player>();
             _playersRoot.AddChild(player);
 
             // Posiciones fijas sobre la mesa
@@ -73,6 +75,11 @@ public partial class PlayerSelectScene : Node3D
     {
         _playerCount = Mathf.Max(_playerCount - 1, 1);
         UpdatePlayers();
+    }
+
+    public int GetPlayerCount()
+    {
+        return _playerCount;
     }
 
 }

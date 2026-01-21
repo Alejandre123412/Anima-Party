@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
+namespace AnimaParty.assets.scenes.player;
+
 public partial class Player : Node3D
 {
 	private MeshInstance3D model;

@@ -1,6 +1,7 @@
 using Godot;
 using System.Collections.Generic;
 
+namespace AnimaParty.assets.script.controllers;
 public partial class PlayerSelect3DController : Node3D
 {
     // Referencias a nodos de la escena

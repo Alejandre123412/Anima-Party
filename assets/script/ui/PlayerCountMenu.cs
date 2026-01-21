@@ -1,5 +1,7 @@
+using AnimaParty.assets.script.data;
 using Godot;
 
+namespace AnimaParty.assets.script.ui;
 public partial class PlayerCountMenu : Control
 {
     // Nodo GameData
