@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://8gmboeudw2na"]
+[gd_scene load_steps=5 format=3 uid="uid://8gmboeudw2na"]
 
-[ext_resource type="Script" uid="uid://yvwbxhcqkju5" path="res://assets/script/TitleBackground.gd" id="1_ak2if"]
+[ext_resource type="Script" uid="uid://yvwbxhcqkju5" path="res://assets/script/effects/TitleBackground.gd" id="1_ak2if"]
+[ext_resource type="Script" uid="uid://geqkkbpfbcwa" path="res://assets/scenes/title/TitleScreen.cs" id="2_60wdv"]
 
 [sub_resource type="Gradient" id="Gradient_1s85s"]
 colors = PackedColorArray(0, 0, 0, 1, 0.0825, 0.13200001, 0.33, 1)
@@ -78,3 +79,6 @@ theme_override_font_sizes/font_size = 30
 text = "Presione L y R para empezar"
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="SceneController" type="Node" parent="."]
+script = ExtResource("2_60wdv")
