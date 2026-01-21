@@ -1,33 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://c2lgyckjkv2pf"]
+[gd_scene load_steps=10 format=3 uid="uid://c2lgyckjkv2pf"]
 
-[ext_resource type="Script" uid="uid://b4hhqepulvfrl" path="res://assets/script/ui/ControlButon3D.cs" id="1_127mn"]
-
-[sub_resource type="CSharpScript" id="CSharpScript_w0dnd"]
-script/source = "using Godot;
-
-public partial class PlayerPodium : Node3D
-{
-	[Export] public PackedScene DefaultCharacterScene;
-
-	private Node3D _currentCharacter;
-	public int PlayerIndex;
-
-	public override void _Ready()
-	{
-		AddToGroup(\"podiums_\" + PlayerIndex);
-	}
-
-	public void ShowCharacter(PackedScene characterScene)
-	{
-		if (_currentCharacter != null)
-			_currentCharacter.QueueFree();
-
-		var scene = characterScene ?? DefaultCharacterScene;
-		_currentCharacter = scene.Instantiate<Node3D>();
-		GetNode<Node3D>(\"CharacterSpawn\").AddChild(_currentCharacter);
-	}
-}
-"
+[ext_resource type="Script" uid="uid://c7o18c1egnkgn" path="res://assets/scenes/table/PlayerSelect3d.cs" id="1_127mn"]
+[ext_resource type="Script" uid="uid://gsn5d8mkupur" path="res://assets/scenes/table/Players.cs" id="2_7espu"]
+[ext_resource type="PackedScene" uid="uid://ddel0h74hwegd" path="res://assets/scenes/Button.tscn" id="2_ee4a8"]
+[ext_resource type="Script" uid="uid://bubw1ljw5h3mk" path="res://assets/scenes/table/PlayerCountPanel.cs" id="2_lfxtp"]
 
 [sub_resource type="Sky" id="Sky_127mn"]
 
@@ -51,37 +27,14 @@ roughness = 0.6
 
 [sub_resource type="BoxMesh" id="BoxMesh_ee4a8"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_127mn"]
-size = Vector3(0.41687012, 0.7010498, 0.4102173)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7espu"]
-albedo_color = Color(0.6, 0.6, 0.6, 1)
-metallic = 0.5
-roughness = 0.7
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_587gy"]
-albedo_color = Color(0.8509804, 0.10980392, 0.10980392, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ee4a8"]
-size = Vector3(0.40171814, 0.7303467, 0.40838623)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grhcm"]
-albedo_color = Color(0.6, 0.6, 0.6, 1)
-metallic = 0.5
-roughness = 0.65
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hyptb"]
-vertex_color_is_srgb = true
-albedo_color = Color(0.85, 0.1105, 0.1105, 1)
-
 [node name="PlayerSelect3D" type="Node3D"]
-script = SubResource("CSharpScript_w0dnd")
+script = ExtResource("1_127mn")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ee4a8")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.84309125, 0.5377705, 0, -0.5377705, 0.84309125, 0, 0.7968286, 0.90642524)
+transform = Transform3D(1, 0, 0, 0, 0.84309125, 0.5377705, 0, -0.5377705, 0.84309125, 0, 0.805463, 1.1611791)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 2.5247447, 2.874784)
@@ -89,7 +42,7 @@ transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.70710
 [node name="Stage" type="Node3D" parent="."]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Stage"]
-transform = Transform3D(3.426157, 0, 0, 0, 0.036464896, -0.70710677, 0, 0.036464896, 0.70710677, 0.010037571, -0.12947512, 0.12947512)
+transform = Transform3D(5.882857, 0, 0, 0, 0.036464896, -0.70710677, 0, 0.036464896, 0.70710677, 0.010037571, -0.12947512, 0.12947512)
 size = Vector3(1.046875, 1, 1.3662109)
 material = SubResource("StandardMaterial3D_lfxtp")
 
@@ -100,12 +53,19 @@ material = SubResource("StandardMaterial3D_0ej1a")
 
 [node name="Players" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4127637, -0.55812126)
+script = ExtResource("2_7espu")
 
 [node name="PlayerCountPanel" type="Node3D" parent="."]
-script = ExtResource("1_127mn")
+script = ExtResource("2_lfxtp")
+
+[node name="ButtonR" parent="PlayerCountPanel" instance=ExtResource("2_ee4a8")]
+transform = Transform3D(0.25, 0, 0, 0, 0.17677669, -0.17677669, 0, 0.17677669, 0.17677669, 1.125, 1.4334917e-05, 0.017762348)
+
+[node name="ButtonL" parent="PlayerCountPanel" instance=ExtResource("2_ee4a8")]
+transform = Transform3D(0.25, 0, 0, 0, 0.17677669, -0.17677669, 0, 0.17677669, 0.17677669, -1.125, 1.4334917e-05, 0.017762348)
 
 [node name="Monitor" type="Node3D" parent="PlayerCountPanel"]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, -0.026507497, 0.03692299)
+transform = Transform3D(1.3200848, 0, 0, 0, 0.9134428, 0.9134428, 0, -0.9134428, 0.9134428, 0, -0.1072624, 0.12496373)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerCountPanel/Monitor"]
 transform = Transform3D(0.9762133, 0, 0, 0, 0.7127045, 0, 0, 0, 0.08908806, 0, 0, 0.037190795)
@@ -113,55 +73,6 @@ mesh = SubResource("BoxMesh_ee4a8")
 
 [node name="PlayerCount" type="Label3D" parent="PlayerCountPanel/Monitor"]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, -0.0020715892, 0.110129684)
-text = "1"
 font_size = 67
-
-[node name="BtnL" type="Area3D" parent="PlayerCountPanel"]
-transform = Transform3D(1, 0, 0, 0, 0.7071067, -0.7071067, 0, 0.7071067, 0.7071067, -0.99481106, 0, 0.010591596)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCountPanel/BtnL"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00091552734, -0.1494751, 0.0020446852)
-shape = SubResource("BoxShape3D_127mn")
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="PlayerCountPanel/BtnL"]
-radius = 0.2
-height = 0.1
-sides = 32
-material = SubResource("StandardMaterial3D_7espu")
-
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="PlayerCountPanel/BtnL"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08511159, 0)
-radius = 0.15
-height = 0.2
-sides = 32
-material = SubResource("StandardMaterial3D_587gy")
-
-[node name="Label3D" type="Label3D" parent="PlayerCountPanel/BtnL"]
-transform = Transform3D(1, 0, 0, 0, -5.9604645e-08, -0.99999994, 0, 0.99999994, -5.9604645e-08, 0, 0.18692023, 0)
-text = "<"
-
-[node name="BtnR" type="Area3D" parent="PlayerCountPanel/BtnL"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9713928, 0.008394916, 0.008394916)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCountPanel/BtnL/BtnR"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0014266968, -0.13482668, -0.0014953502)
-shape = SubResource("BoxShape3D_ee4a8")
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="PlayerCountPanel/BtnL/BtnR"]
-radius = 0.2
-height = 0.1
-sides = 32
-material = SubResource("StandardMaterial3D_grhcm")
-
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="PlayerCountPanel/BtnL/BtnR"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08555825, 0)
-radius = 0.15
-height = 0.2
-sides = 32
-material = SubResource("StandardMaterial3D_hyptb")
-
-[node name="Label3D" type="Label3D" parent="PlayerCountPanel/BtnL/BtnR"]
-transform = Transform3D(1, 0, 0, 0, -5.9604645e-08, -0.99999994, 0, 0.99999994, -5.9604645e-08, 0, 0.18755043, 3.7252903e-09)
-text = ">"
 
 [node name="CharacterSelectionPanel" type="Node3D" parent="."]

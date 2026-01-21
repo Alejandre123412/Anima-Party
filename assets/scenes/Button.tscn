@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://ddel0h74hwegd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ka3ot"]
+albedo_color = Color(1, 0.13, 0.13, 1)
+metallic = 0.59
+roughness = 0.3
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ka3ot"]
+top_radius = 0.75
+bottom_radius = 0.75
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_obgnx"]
+albedo_color = Color(0.58, 0.58, 0.58, 1)
+metallic = 1.0
+roughness = 0.49
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_obgnx"]
+top_radius = 1.0
+bottom_radius = 1.0
+
+[sub_resource type="Animation" id="Animation_ka3ot"]
+resource_name = "OnPress"
+length = 0.2
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.37602574, 0, 0.1, 1, 0, 0.011939526, 0, 0.2, 1, 0, 0.37602574, 0)
+
+[sub_resource type="Animation" id="Animation_obgnx"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.37602574, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mko1e"]
+_data = {
+&"OnPress": SubResource("Animation_ka3ot"),
+&"RESET": SubResource("Animation_obgnx")
+}
+
+[node name="Button" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.25, 0, 0, 0, 1, 0, 0.37602574, 0)
+material_override = SubResource("StandardMaterial3D_ka3ot")
+mesh = SubResource("CylinderMesh_ka3ot")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.125, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_obgnx")
+mesh = SubResource("CylinderMesh_obgnx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_mko1e")
+}

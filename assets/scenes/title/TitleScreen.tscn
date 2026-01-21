@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://8gmboeudw2na"]
+[gd_scene load_steps=5 format=3 uid="uid://c1cvoryma1p2d"]
 
 [ext_resource type="Script" uid="uid://yvwbxhcqkju5" path="res://assets/script/effects/TitleBackground.gd" id="1_ak2if"]
 [ext_resource type="Script" uid="uid://geqkkbpfbcwa" path="res://assets/scenes/title/TitleScreen.cs" id="2_60wdv"]

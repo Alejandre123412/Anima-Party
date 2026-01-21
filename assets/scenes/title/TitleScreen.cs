@@ -1,24 +1,31 @@
 using Godot;
 using System;
+using AnimaParty.assets.scenes.player;
+
 namespace AnimaParty.assets.scenes.title;
 public partial class TitleScreen : Node
 {
+	private bool _isPress = false;
+	private static Player _player;
 
-	private bool cambiado = false;
-
-	public override void _Process(double delta)
+	public override void _Input(InputEvent @event)
 	{
-		if (cambiado) return;
-		// Left Click
-		bool mouseClick = Input.IsMouseButtonPressed(MouseButton.Left);
-
-		// L + R (LB + RB / L1 + R1)
-		bool l = Input.IsJoyButtonPressed(0, JoyButton.LeftShoulder);
-		bool r = Input.IsJoyButtonPressed(0, JoyButton.RightShoulder);
-
-		if (mouseClick || (l && r))
+		if (@event is InputEventMouse || @event is InputEventKey) return;
+		if (_player == null)
+			_player = new Player();
+		GD.Print(@event.Device);
+		_player.SetDevice(@event.Device);
+		GD.Print(_player.GetDevice());
+		
+		bool hasPress = @event.IsActionPressed("ui_l1")||@event.IsActionPressed("ui_r1");
+		if (!_isPress && hasPress)
 		{
-			cambiado = true;
+			_isPress = true;
+		}
+
+		if (_isPress && hasPress)
+		{
+			GD.Print("Pressed");
 			Cambiar();
 		}
 	}
@@ -26,5 +33,10 @@ public partial class TitleScreen : Node
 	private void Cambiar()
 	{
 		GetTree().ChangeSceneToFile("res://assets/scenes/table/PlayerSelect3D.tscn");
+	}
+
+	public static Player PassPlayer()
+	{
+		return _player;
 	}
 }

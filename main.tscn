@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://ucbkmmm18cxg"]
+[gd_scene load_steps=2 format=3 uid="uid://juttb7sr7305"]
 
-[ext_resource type="PackedScene" uid="uid://8gmboeudw2na" path="res://assets/scenes/title/TitleScreen.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" path="res://assets/scenes/title/TitleScreen.tscn" id="1_ig7tw"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
