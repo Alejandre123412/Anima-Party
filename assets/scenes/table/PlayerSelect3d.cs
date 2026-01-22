@@ -15,7 +15,7 @@ public partial class PlayerSelect3d : Node3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		_player = TitleScreen.PassPlayer();
+		//_player = TitleScreen.PassPlayer();
 		GD.Print(_player);
 		Players.Add(_player);
 		_playerCountPanel = GetNode<PlayerCountPanel>("PlayerCountPanel");

@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjw75o0x42q3b"]
+
+[ext_resource type="Texture2D" uid="uid://8mfg0noa0k7x" path="res://assets/textures/mando.png" id="1_7252y"]
+
+[node name="Player" type="VBoxContainer"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+size_flags_vertical = 6
+texture = ExtResource("1_7252y")
+
+[node name="Player" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 32
+theme_override_font_sizes/font_size = 32
+text = "player 1"

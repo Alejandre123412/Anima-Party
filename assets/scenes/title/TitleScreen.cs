@@ -1,21 +1,17 @@
 using Godot;
 using System;
 using AnimaParty.assets.scenes.player;
+using AnimaParty.assets.script.data;
 
 namespace AnimaParty.assets.scenes.title;
 public partial class TitleScreen : Node
 {
 	private bool _isPress = false;
-	private static Player _player;
-
+	private static Device Player { get; set; }
 	public override void _Input(InputEvent @event)
 	{
 		if (@event is InputEventMouse || @event is InputEventKey) return;
-		if (_player == null)
-			_player = new Player();
-		GD.Print(@event.Device);
-		_player.SetDevice(@event.Device);
-		GD.Print(_player.GetDevice());
+		Player=new Device(@event.Device);
 		
 		bool hasPress = @event.IsActionPressed("ui_l1")||@event.IsActionPressed("ui_r1");
 		if (!_isPress && hasPress)
@@ -32,11 +28,11 @@ public partial class TitleScreen : Node
 
 	private void Cambiar()
 	{
-		GetTree().ChangeSceneToFile("res://assets/scenes/table/PlayerSelect3D.tscn");
+		GetTree().ChangeSceneToFile("res://assets/scenes/Jugadores/PlayerCount.tscn");
 	}
 
-	public static Player PassPlayer()
+	public static Device GetPlayerDevice()
 	{
-		return _player;
+		return Player;
 	}
 }
