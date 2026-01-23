@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://7iqilvb6h5e3"]
+[gd_scene load_steps=3 format=3 uid="uid://7iqilvb6h5e3"]
+
+[ext_resource type="Script" uid="uid://bs6kh5yubg2xe" path="res://assets/scenes/Jugadores/PlayerSelection.cs" id="1_osta2"]
+[ext_resource type="PackedScene" uid="uid://deahntyo6sxx2" path="res://assets/scenes/Jugadores/CharactersView.tscn" id="2_okijs"]
 
 [node name="PlayerSelection" type="Control"]
 layout_mode = 3
@@ -7,3 +10,40 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_osta2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.38009453, 0.4989611, 0.87448496, 1)
+
+[node name="MainLayout" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayersView" type="HBoxContainer" parent="MainLayout"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="CharactersView" parent="MainLayout" instance=ExtResource("2_okijs")]
+layout_mode = 2
+
+[node name="Node" type="Node" parent="."]
+
+[node name="StartLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="InstructionsLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

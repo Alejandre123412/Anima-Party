@@ -1,138 +1,98 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 using AnimaParty.assets.scenes.title;
 using AnimaParty.assets.script.data;
 
 namespace AnimaParty.assets.scenes.Jugadores;
+
 public partial class PlayerCount : Node
 {
-	private HBoxContainer _players;
-	private PackedScene _playerScene;
-	private const string PlayerScenePath = "res://assets/scenes/Jugadores/Player.tscn";
-	private static int _count = 0;
-	private List<VBoxContainer> _containers=new List<VBoxContainer>();
-	private const int MaxPlayers = 4;
-	private Label _countLabel;
-	private Label _left;
-	private Label _right;
-	private bool _isInserting=false;
-	private static Device _playerDevice;
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-		_playerScene = GD.Load<PackedScene>(PlayerScenePath);
-		if (_playerScene == null)
-		{
-			GD.PrintErr($"Error: No se pudo cargar la escena en {PlayerScenePath}");
-			return;
-		}
+    private const int MaxPlayers = 4;
+    private const string PlayerScenePath =
+        "res://assets/scenes/Jugadores/Player.tscn";
 
-		var parent = GetParent().GetNode("View");
-		_countLabel = parent.GetNode("Selection").GetNode<Label>("PlayerCounter");
-		_left = parent.GetNode("Selection").GetNode<Label>("<");
-		_right = parent.GetNode("Selection").GetNode<Label>(">");
-		_players = parent.GetNode<HBoxContainer>("Players");
-		_playerDevice = TitleScreen.GetPlayerDevice();
-		
-		InstantiatePlayer();
-	}
+    private PackedScene _playerScene;
+    private HBoxContainer _players;
+    private Label _countLabel;
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+    private readonly List<VBoxContainer> _containers = new();
+    private static Device _playerDevice;
 
-	public override void _Input(InputEvent @event)
-	{
-		if (!@event.IsPressed())
-			return;
+    public override void _Ready()
+    {
+        _playerScene = GD.Load<PackedScene>(PlayerScenePath);
+        if (_playerScene == null)
+        {
+            GD.PrintErr($"No se pudo cargar {PlayerScenePath}");
+            return;
+        }
 
-		if (_playerDevice.CompareTo(new Device(@event.Device)) != 0)
-			return;
+        _playerDevice = TitleScreen.GetPlayerDevice();
 
-		if (_isInserting)
-			return;
+        PlayerData.PlayerCount = 0;
+        PlayerData.Devices.Add(_playerDevice.DeviceId);
 
-		if (@event.IsActionPressed("ui_left"))
-		{
-			DeinstantiatePlayer();
-		}
-		else if (@event.IsActionPressed("ui_right"))
-		{
-			InstantiatePlayer();
-		}
-		else if (@event.IsActionPressed("ui_accept"))
-		{
-			GetTree().ChangeSceneToFile("res://assets/scenes/Jugadores/PlayerSelection.tscn");
-		}
-	}
+        var view = GetParent().GetNode("View");
+        _players = view.GetNode<HBoxContainer>("Players");
+        _countLabel = view.GetNode("Selection")
+                          .GetNode<Label>("PlayerCounter");
 
+        AddPlayer();
+    }
 
-	private void InstantiatePlayer()
-	{
-		_count++;
-		if(_count>MaxPlayers)
-		{
-			GD.PrintErr("Error: Maximo de la escena en {0}",_count);
-			_count--;
-			return;
-		}
-		_isInserting = true;
-		VBoxContainer player=_playerScene.Instantiate() as VBoxContainer;
-		if (player == null)
-		{
-			GD.PrintErr("Error al instanciar el enemigo.");
-			return;
-		}
-		// 3. Configurar propiedades (posición, etc.)
-		player.SizeFlagsHorizontal = Control.SizeFlags.ShrinkCenter | Control.SizeFlags.Expand;
-		player.SizeFlagsVertical = Control.SizeFlags.ShrinkCenter;
-		player.SetStretchRatio(1);
+    public override void _Input(InputEvent @event)
+    {
+        if (!@event.IsPressed())
+            return;
 
-		player.GetNode<Label>("Player").Text = $"Player {_count}";
+        if (_playerDevice.CompareTo(new Device(@event.Device)) != 0)
+            return;
 
-		// 4. Añadirlo al árbol de escenas (hijo de este GameManager)
-		_players.AddChild(player);
-		_containers.Add(player);
-		//GD.Print($"Enemigo instanciado en");
-		
-		_countLabel.Text = $"{_count}";
-		_isInserting = false;
-	}
-	
-	private void DeinstantiatePlayer()
-	{
-		_count--;
-		if (_count <= 0)
-		{
-			GD.PrintErr("Error: Maximo de la escena en {0}",_count);
-			_count++;
-			return;
-		}
+        if (@event.IsActionPressed("ui_left"))
+            RemovePlayer();
+        else if (@event.IsActionPressed("ui_right"))
+            AddPlayer();
+        else if (@event.IsActionPressed("ui_accept"))
+            GetTree().ChangeSceneToFile(
+                "res://assets/scenes/Jugadores/PlayerSelection.tscn");
+    }
 
-		_isInserting = true;
+    private void AddPlayer()
+    {
+        if (PlayerData.PlayerCount >= MaxPlayers)
+            return;
 
-		
-		var player = _containers[_count];
+        var player = _playerScene.Instantiate<VBoxContainer>();
+        if (player == null)
+            return;
 
-		_players.RemoveChild(player);
-		_containers.RemoveAt(_count);
-		player.QueueFree();
+        PlayerData.PlayerCount++;
 
-		_countLabel.Text = _count.ToString();
+        player.SizeFlagsHorizontal =
+            Control.SizeFlags.Expand | Control.SizeFlags.ShrinkCenter;
+        //player.SizeFlagsVertical = Control.SizeFlags.ShrinkCenter;
+        //player.StretchRatio = 1;
 
-		_isInserting = false;
-		
-	}
+        player.GetNode<Label>("Player").Text =
+            $"Player {PlayerData.PlayerCount}";
 
-	public static int GetPlayerCount()
-	{
-		return _count;
-	}
+        _players.AddChild(player);
+        _containers.Add(player);
 
-	public static Device GetPlayerDevice()
-	{
-		return _playerDevice;
-	}
+        _countLabel.Text = PlayerData.PlayerCount.ToString();
+    }
+
+    private void RemovePlayer()
+    {
+        if (PlayerData.PlayerCount <= 1)
+            return;
+
+        PlayerData.PlayerCount--;
+
+        var player = _containers[^1];
+        _containers.RemoveAt(_containers.Count - 1);
+
+        player.QueueFree();
+        _countLabel.Text = PlayerData.PlayerCount.ToString();
+    }
 }

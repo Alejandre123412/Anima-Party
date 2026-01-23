@@ -3,6 +3,7 @@
 public struct Device(int deviceId)
 {
     private int _deviceId = deviceId;
+    public int DeviceId => _deviceId;
 
     public int CompareTo(Device other)
     {
