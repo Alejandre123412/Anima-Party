@@ -29,18 +29,18 @@ public partial class PlayerCount : Node
         if (playersContainer == null) { GD.PrintErr("No se encontró Players"); return; }
         countLabel = view.GetNode<Label>("Selection/PlayerCountLabel");
         if (countLabel == null) { GD.PrintErr("No se encontró PlayerCountLabel"); return; }
-        if (PlayerData.PlayerCount == 0) { GD.PrintErr("No hay jugadores en PlayerData"); return; }
+        if (PlayerData.GetTempPlayers().Count == 0) { GD.PrintErr("No hay jugadores en PlayerData"); return; }
         player = PlayerData.GetTempPlayer(0);
-        for (int i = 0; i < PlayerData.PlayerCount; i++)
+        for (int i = 0; i < PlayerData.GetTempPlayers().Count; i++)
             AddPlayerUi();
-        GD.Print($"Player Count: {PlayerData.PlayerCount}");
-        GD.Print($"Player Device: {player.DeviceId}");
+        //GD.Print($"Player Count: {PlayerData.PlayerCount}");
+        //GD.Print($"Player Device: {player.DeviceId}");
     }
 
     public override void _Input(InputEvent @event)
     {
-        GD.Print($"Input Device: {@event.Device}");
-        GD.Print($"Input Count: {player.DeviceId}");
+        //GD.Print($"Input Device: {@event.Device}");
+        //GD.Print($"Input Count: {player.DeviceId}");
         if (player.LeftPressed(@event))
             RemovePlayerUi();
         else if (player.RightPressed(@event))

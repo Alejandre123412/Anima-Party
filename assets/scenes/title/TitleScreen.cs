@@ -26,7 +26,7 @@ public partial class TitleScreen : Node
 		if (isPress && hasPress)
 		{
 			GD.Print("Pressed");
-			GD.Print($"Diviced encharge: {@event.Device}");
+			//GD.Print($"Diviced encharge: {@event.Device}");
 			PlayerData.AddDevice(@event.Device);
 			Cambiar();
 		}

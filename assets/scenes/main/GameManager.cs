@@ -5,87 +5,117 @@ using AnimaParty.assets.script.types;
 
 namespace AnimaParty.assets.scenes.main;
 
-public partial class GameManager : Node3D
+public partial class GameManager : Node
 {
-    [Export] public PackedScene PlayerScene; // La escena base del jugador
-    [Export] public Node3D PlayersRoot;      // Nodo donde se añadirán los jugadores
-    [Export] public Node3D CharactersRoot;   // Nodo con los modelos cargados (CharacterViewer)
+	#region Exports
+	[Export] public Node3D PlayersRoot;
+	[Export] public Camera3D MainCamera;  // Cámara principal
+	[Export] public float PlayerSpacing = 2.0f;
+	[Export] public float MoveSpeed = 5.0f;
+	[Export] public float FollowDistance = 1.5f;
+	[Export] public float CameraHeight = 5.0f;      // Altura de la cámara sobre la fila
+	[Export] public float CameraDistance = 6.0f;    // Distancia detrás del líder
+	[Export] public float CameraLerpSpeed = 5.0f;   // Suavizado
+	#endregion
 
-    public override void _Ready()
-    {
-        SpawnPlayers();
-    }
+	private Player leader;
 
-    private void SpawnPlayers()
-    {
-        if (PlayerData.PlayerCount == 0)
-        {
-            GD.PrintErr("No hay jugadores registrados en PlayerData.");
-            return;
-        }
+	public override void _Ready()
+	{
+		SetupPlayerLine();
+	}
 
-        PlayerJugable leader = null;
+	public override void _Process(double delta)
+	{
+		float dt = (float)delta;
 
-        if (PlayerData.HasNullPlayerList())
-            return;
+		if (leader != null)
+			MoveLeader(leader, dt);
 
-        for (int i = 0; i < PlayerData.PlayerCount; i++)
-        {
-            var pdata = PlayerData.Players[i];
+		MoveFollowers(dt);
+		UpdateCamera(dt);
+	}
 
-            // Instanciamos el jugador
-            var playerInstance = PlayerScene.Instantiate<PlayerJugable>();
-            PlayersRoot.AddChild(playerInstance);
+	#region Setup
+	private void SetupPlayerLine()
+	{
+		if (PlayerData.PlayerCount == 0) return;
 
-            playerInstance.Name = $"Player_{i + 1}";
-            playerInstance.GlobalPosition = new Vector3(i * 2.0f, 0, 0); // separarlos un poco
+		// Posicionar todos los jugadores en fila inicial
+		for (int i = 0; i < PlayerData.PlayerCount; i++)
+		{
+			Player pdata = PlayerData.Players[i];
+			Node3D node = pdata.player;
 
-            // Guardamos la referencia de la instancia en Player.player
-            pdata.player = playerInstance;
+			if (node == null) continue;
 
-            // Aplicamos el modelo seleccionado
-            ApplySelectedCharacter(pdata);
+			PlayersRoot.AddChild(node);
+			node.GlobalPosition = new Vector3(i * PlayerSpacing, 0, 0);
 
-            // Configuramos líder y seguidores
-            if (i == 0)
-            {
-                playerInstance.isLeader = true;
-                leader = playerInstance;
-            }
-            else
-            {
-                playerInstance.isLeader = false;
-                playerInstance.leaderPath = playerInstance.GetPathTo(leader);
-            }
-        }
-    }
+			// Primer jugador = líder
+			if (i == 0)
+				leader = pdata;
+		}
+	}
+	#endregion
 
-    private void ApplySelectedCharacter(Player pdata)
-    {
-        if (pdata.player == null)
-        {
-            GD.PrintErr($"Player {pdata} no tiene instancia asignada.");
-            return;
-        }
+	#region Movement
+	private void MoveLeader(Player leaderPlayer, float dt)
+	{
+		Node3D node = leaderPlayer.player;
+		if (node == null) return;
 
-        // Obtenemos el nodo del personaje seleccionado
-        Node3D selectedCharacter = pdata.player;
-        if (selectedCharacter == null)
-        {
-            GD.PrintErr($"Player {pdata} no tiene personaje seleccionado.");
-            return;
-        }
+		Vector3 inputDir = Vector3.Zero;
 
-        // Limpiar hijos anteriores del player
-        foreach (Node child in pdata.player.GetChildren())
-            child.QueueFree();
+		if (Input.IsActionPressed("ui_up")) inputDir.Z -= 1;
+		if (Input.IsActionPressed("ui_down")) inputDir.Z += 1;
+		if (Input.IsActionPressed("ui_left")) inputDir.X -= 1;
+		if (Input.IsActionPressed("ui_right")) inputDir.X += 1;
 
-        // Hacer que el modelo seleccionado sea hijo del player
-        pdata.player.AddChild(selectedCharacter);
+		if (inputDir.Length() > 0)
+		{
+			inputDir = inputDir.Normalized();
+			node.GlobalPosition += inputDir * MoveSpeed * dt;
+			node.LookAt(node.GlobalPosition + inputDir, Vector3.Up);
+		}
+	}
 
-        // Ajustar transform para que quede en el lugar correcto
-        selectedCharacter.Transform = Transform3D.Identity;
-    }
+	private void MoveFollowers(float dt)
+	{
+		for (int i = 1; i < PlayerData.PlayerCount; i++)
+		{
+			Player follower = PlayerData.Players[i];
+			Node3D followerNode = follower.player;
+			if (followerNode == null) continue;
 
+			Node3D targetNode = PlayerData.Players[i - 1].player;
+			if (targetNode == null) continue;
 
+			Vector3 dir = targetNode.GlobalPosition - followerNode.GlobalPosition;
+			float distance = dir.Length();
+
+			if (distance > FollowDistance)
+			{
+				dir = dir.Normalized();
+				followerNode.GlobalPosition += dir * MoveSpeed * dt;
+				followerNode.LookAt(targetNode.GlobalPosition, Vector3.Up);
+			}
+		}
+	}
+	#endregion
+
+	#region Camera
+	private void UpdateCamera(float dt)
+	{
+		if (MainCamera == null || leader == null || leader.player == null) return;
+
+		Vector3 leaderPos = leader.player.GlobalPosition;
+		Vector3 targetPos = leaderPos - leader.player.GlobalTransform.Basis.Z * CameraDistance;
+		targetPos.Y += CameraHeight;
+
+		// Suavizado con lerp
+		MainCamera.GlobalPosition = MainCamera.GlobalPosition.Lerp(targetPos, CameraLerpSpeed * dt);
+		MainCamera.LookAt(leaderPos, Vector3.Up);
+	}
+	#endregion
 }

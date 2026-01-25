@@ -5,119 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="329c87af-3d27-407d-bd1d-5880f151de81" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/scenes/Jugadores/PlayerCameraController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/script/mod/AssemblyLoader.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/script/mod/CharacterRegistry.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/script/mod/CoreMod.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/script/mod/IModEntry.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/script/mod/JsonLoader.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/script/mod/MinigameRegistry.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/script/mod/ModContext.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/script/mod/ModData.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/script/mod/ModFileSystem.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/script/mod/ModLoader.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/script/mod/ModRegistry.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/script/mod/boostrap/GameBootstrap.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/script/types/PlayerInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core_mod/mod.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core_mod/scripts/BaseClases.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core_mod/scripts/Interfaces.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core_mod/scripts/Registry.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Anima Party/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Anima Party/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Anima Party/.idea/dbnavigator.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Anima Party/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Anima Party/.idea/indexLayout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Anima Party/.idea/libraries/GdSdk.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Anima Party/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.anima-party.dir/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.anima-party/.idea/contentModel.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.anima-party/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.anima-party/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.anima-party/riderModule.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anima Party.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Anima Party.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/controller/ai_controller_2d.gd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/controller/ai_controller_2d.gd.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/controller/ai_controller_3d.gd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/controller/ai_controller_3d.gd.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/godot_rl_agents.gd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/godot_rl_agents.gd.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/icon.png.import" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/onnx/csharp/ONNXInference.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/onnx/csharp/ONNXInference.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/onnx/csharp/SessionConfigurator.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/onnx/csharp/SessionConfigurator.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/onnx/csharp/docs/ONNXInference.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/onnx/csharp/docs/SessionConfigurator.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/onnx/wrapper/ONNX_wrapper.gd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/onnx/wrapper/ONNX_wrapper.gd.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/plugin.cfg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_2d/ExampleRaycastSensor2D.tscn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_2d/GridSensor2D.gd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_2d/GridSensor2D.gd.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_2d/ISensor2D.gd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_2d/ISensor2D.gd.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_2d/RaycastSensor2D.gd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_2d/RaycastSensor2D.gd.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_2d/RaycastSensor2D.tscn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_3d/ExampleRaycastSensor3D.tscn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_3d/GridSensor3D.gd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_3d/GridSensor3D.gd.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_3d/ISensor3D.gd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_3d/ISensor3D.gd.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_3d/RGBCameraSensor3D.gd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_3d/RGBCameraSensor3D.gd.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_3d/RGBCameraSensor3D.tscn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_3d/RaycastSensor3D.gd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_3d/RaycastSensor3D.gd.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_3d/RaycastSensor3D.tscn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sync.gd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sync.gd.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/anima-party.sln" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/models/kight.glb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/models/kight.glb.import" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/models/kight_Image_0.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/models/kight_Image_0.jpg.import" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/models/kight_Image_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/models/kight_Image_1.jpg.import" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/models/kight_Image_2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/models/kight_Image_2.jpg.import" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scenes/Jugadores/CharacterSelection.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scenes/Jugadores/CharacterSelection.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scenes/Jugadores/CharactersView.tscn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scenes/Jugadores/PlayerCount.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scenes/Jugadores/PlayerCount.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scenes/Jugadores/PlayerCount.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scenes/Jugadores/PlayerCount.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scenes/Jugadores/PlayerSelection.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scenes/Jugadores/PlayerSelection.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scenes/Jugadores/PlayerSelection.tscn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scenes/Jugadores/PlayerSlot.tscn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scenes/main/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scenes/main/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scenes/main/PlayerJugable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scenes/main/PlayerJugable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scenes/main/PlayerJugable.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scenes/main/PlayerJugable.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scenes/player/Player.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scenes/player/Player.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scenes/player/Player.tscn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scenes/table/PlayerCountPanel.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scenes/table/PlayerCountPanel.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scenes/table/PlayerSelect3D.tscn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scenes/table/PlayerSelect3d.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scenes/table/PlayerSelect3d.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scenes/table/PlayerSlot.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scenes/table/PlayerSlot.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scenes/table/Players.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scenes/table/Players.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scenes/title/TitleScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scenes/title/TitleScreen.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scenes/title/TitleScreen.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scenes/title/TitleScreen.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/script/controllers/PlayerSelect3DController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/script/controllers/PlayerSelect3DController.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/script/data/Device.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/script/data/Device.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/script/data/GameData.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/script/data/GameData.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/script/data/PlayerData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/script/data/PlayerData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/script/types/PlayerSlotState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/script/types/PlayerSlotState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot-git-plugin/windows/~libgit_plugin.windows.editor.x86_64.dll" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -248,7 +136,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1769232470528</updated>
-      <workItem from="1769232471586" duration="41602000" />
+      <workItem from="1769232471586" duration="42286000" />
     </task>
     <servers />
   </component>

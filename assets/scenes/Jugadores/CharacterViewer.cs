@@ -5,256 +5,205 @@ using AnimaParty.assets.script.types;
 
 namespace AnimaParty.assets.scenes.Jugadores;
 
-/// <summary>
-/// Manages split-screen character viewports.
-/// Responsible for creating one SubViewport and Camera per player
-/// and enabling them when a player connects.
-/// </summary>
 public partial class CharacterViewer : Node3D
 {
     [Export] private PackedScene nextScene;
-    /// <summary>
-    /// GridContainer that holds all SubViewportContainers.
-    /// Expected to be UI/ViewPorts.
-    /// </summary>
     [Export] private Control uiRoot;
-
-    /// <summary>
-    /// Default camera field of view.
-    /// </summary>
     [Export] private float cameraFov = 70f;
 
-    /// <summary>
-    /// List of SubViewports, one per player.
-    /// </summary>
     private readonly List<SubViewport> viewports = new();
-
-    /// <summary>
-    /// List of cameras associated with each SubViewport.
-    /// </summary>
     private readonly List<Camera3D> cameras = new();
-    
     private readonly List<Node3D?> activeCharacters = new();
 
-    // Diccionario: jugador → índice del personaje seleccionado
-    private Dictionary<Player, int> playerSelections = new();
+    private readonly Dictionary<Player, int> playerSelections = new();
+    private readonly Dictionary<Player, bool> lockedSelections = new();
 
-// Diccionario: jugador → confirmado (true si ya eligió)
-    private Dictionary<Player, bool> lockedSelections = new();
+    private List<PackedScene> characterScenes = new();
 
-// Lista de rutas a los glb de personajes
-    private List<string> characterFiles = new();
-
-    /// <summary>
-    /// Called when the node enters the scene tree.
-    /// Initializes the split-screen layout.
-    /// </summary>
     public override void _Ready()
     {
-        var tempPlayers = PlayerData.GetTempPlayers();
-        characterFiles = ListCharactersFromFolder("res://assets/characters/");
-
-        playerSelections.Clear();
-        lockedSelections.Clear();
-
-        foreach (var player in tempPlayers)
-        {
-            playerSelections.Add(player,0);    // todos empiezan en el primer personaje
-            lockedSelections.Add(player,false);
-    
-            // Instanciamos el primer personaje visible
-            AssignCharacterToPlayer(player, characterFiles[0]);
-        }
+        characterScenes = LoadCharacterScenes("res://assets/models/characters/");
         SetupSplitScreen();
-        
+
+        var players = PlayerData.GetTempPlayers();
+        for (int i = 0; i < players.Count; i++)
+        {
+            playerSelections[players[i]] = 0;
+            lockedSelections[players[i]] = false;
+            AssignCharacterToPlayer(players[i], 0);
+        }
+    }
+
+    public override void _Process(double delta)
+    {
+        FinalizeSelections();
     }
 
     #region Characters
-    private List<string> ListCharactersFromFolder(string folderPath)
+
+    private List<PackedScene> LoadCharacterScenes(string folderPath)
     {
-        List<string> characterFiles = new();
+        var list = new List<PackedScene>();
         var dir = DirAccess.Open(folderPath);
-        if (dir == null) return characterFiles;
+        if (dir == null) return list;
 
         dir.ListDirBegin();
         while (true)
         {
-            string file = dir.GetNext();
+            var file = dir.GetNext();
             if (file == "") break;
             if (dir.CurrentIsDir()) continue;
             if (!file.EndsWith(".glb") && !file.EndsWith(".blend")) continue;
 
-            characterFiles.Add($"{folderPath}{file}");
+            var scene = GD.Load<PackedScene>($"{folderPath}{file}");
+            if (scene != null)
+                list.Add(scene);
         }
         dir.ListDirEnd();
-        return characterFiles;
+
+        return list;
     }
-    private Node3D LoadCharacterFromGlb(string path)
+
+    private void AssignCharacterToPlayer(Player player, int characterIndex)
     {
-        // Crear document y estado
-        var gltfDoc = new Godot.GltfDocument();
-        var gltfState = new Godot.GltfState();
-
-        // Cargar el archivo GLB en el state
-        var err = gltfDoc.AppendFromFile(path, gltfState);
-        if (err != Error.Ok)
-        {
-            GD.PrintErr($"No se pudo cargar {path}: {err}");
-            return null;
-        }
-
-        // Generar la escena a partir del state
-        Node sceneNode = gltfDoc.GenerateScene(gltfState);
-        if (sceneNode == null)
-        {
-            GD.PrintErr($"No se pudo generar escena de {path}");
-            return null;
-        }
-
-        return sceneNode as Node3D;
-    }
-    /// <summary>
-    /// Asigna un personaje a un jugador y lo instancia en su viewport.
-    /// </summary>
-    private void AssignCharacterToPlayer(Player player, string glbPath)
-    {
-        if (player == null) return;
-
         int playerIndex = PlayerData.GetTempPlayers().IndexOf(player);
         if (playerIndex < 0 || playerIndex >= viewports.Count) return;
 
-        // Limpiar personaje anterior
         if (activeCharacters.Count > playerIndex && activeCharacters[playerIndex] != null)
         {
-            activeCharacters[playerIndex]?.QueueFree();
+            activeCharacters[playerIndex]!.QueueFree();
             activeCharacters[playerIndex] = null;
         }
 
-        // Instanciar personaje desde GLB
-        var characterNode = LoadCharacterFromGlb(glbPath);
-        if (characterNode == null) return;
+        var instance = characterScenes[characterIndex].Instantiate<Node3D>();
+        viewports[playerIndex].AddChild(instance);
 
-        viewports[playerIndex].AddChild(characterNode);
-
-        // Guardar referencia en activeCharacters
         if (activeCharacters.Count <= playerIndex)
-            activeCharacters.Add(characterNode);
+            activeCharacters.Add(instance);
         else
-            activeCharacters[playerIndex] = characterNode;
+            activeCharacters[playerIndex] = instance;
 
-        // Posición inicial frente a la cámara
-        characterNode.GlobalTransform = Transform3D.Identity;
+        NormalizeCharacter(instance);
+        PositionCamera(cameras[playerIndex], instance);
 
-        // Actualizar diccionario de selección
-        playerSelections[player] = characterFiles.IndexOf(glbPath);
+        playerSelections[player] = characterIndex;
     }
 
-
-    /// <summary>
-    /// Cambia el personaje que el jugador está visualizando, evitando duplicados.
-    /// </summary>
     private void ChangeCharacter(Player player, int delta)
     {
-        if (player == null) return;
-        
-        if (lockedSelections.ContainsKey(player) && lockedSelections[player]) return;
-        if (characterFiles.Count == 0) return;
+        if (lockedSelections[player]) return;
 
-        int currentIndex = playerSelections.ContainsKey(player) ? playerSelections[player] : 0;
-        int nextIndex = currentIndex + delta;
-        int count = characterFiles.Count;
+        int current = playerSelections[player];
+        int count = characterScenes.Count;
+        int next = (current + delta + count) % count;
 
-        // Wrap-around
-        if (nextIndex < 0) nextIndex = count - 1;
-        if (nextIndex >= count) nextIndex = 0;
-
-        // Evitar personajes ya confirmados por otros jugadores
-        bool safe = false;
-        while (!safe)
+        foreach (var kv in lockedSelections)
         {
-            safe = true;
-            foreach (var kvp in lockedSelections)
+            if (kv.Key != player && kv.Value && playerSelections[kv.Key] == next)
+                return;
+        }
+
+        AssignCharacterToPlayer(player, next);
+    }
+
+    private void ConfirmCharacter(Player player)
+    {
+        lockedSelections[player] = true;
+    }
+
+    private void RetractSelection(Player player)
+    {
+        if (lockedSelections[player])
+            lockedSelections[player] = false;
+    }
+
+    #endregion
+
+    #region Camera & Scale
+    private Aabb GetCharacterBounds(Node3D root)
+    {
+        bool hasBounds = false;
+        Aabb result = new Aabb(Vector3.Zero, Vector3.Zero);
+
+        foreach (Node child in root.GetChildren())
+        {
+            if (child is VisualInstance3D vis)
             {
-                Player otherPlayer = kvp.Key;
-                bool locked = kvp.Value;
-                if (otherPlayer == player) continue;
-                if (locked && playerSelections.ContainsKey(otherPlayer) && playerSelections[otherPlayer] == nextIndex)
+                // Obtener AABB local y transformarlo al espacio del personaje
+                Aabb localAabb = vis.GetAabb();
+                Aabb worldAabb = root.GlobalTransform * localAabb;
+
+                if (!hasBounds)
                 {
-                    safe = false;
-                    nextIndex += delta > 0 ? 1 : -1;
-                    if (nextIndex < 0) nextIndex = count - 1;
-                    if (nextIndex >= count) nextIndex = 0;
-                    break;
+                    result = worldAabb;
+                    hasBounds = true;
+                }
+                else
+                {
+                    result = result.Merge(worldAabb);
+                }
+            }
+            else if (child is Node3D node3D)
+            {
+                var childAabb = GetCharacterBounds(node3D);
+                if (childAabb.Size != Vector3.Zero)
+                {
+                    if (!hasBounds)
+                    {
+                        result = childAabb;
+                        hasBounds = true;
+                    }
+                    else
+                    {
+                        result = result.Merge(childAabb);
+                    }
                 }
             }
         }
 
-        // Actualizar selección y viewport
-        playerSelections[player] = nextIndex;
-        AssignCharacterToPlayer(player, characterFiles[nextIndex]);
+        return result;
     }
-
-    /// <summary>
-    /// Confirma la selección del jugador, bloqueando el personaje para otros.
-    /// </summary>
-    private void ConfirmCharacter(Player player)
+    private void NormalizeCharacter(Node3D character, float targetHeight = 2f)
     {
-        if (player == null) return;
+        var aabb = GetCharacterBounds(character);
+        if (aabb.Size.Y <= 0) return;
 
-        lockedSelections[player] = true;
+        float scale = targetHeight / aabb.Size.Y;
+        character.Scale = Vector3.One * scale;
 
-        if (!playerSelections.ContainsKey(player)) return;
-
-        int charIndex = playerSelections[player];
-        GD.Print($"Player {player} confirmó {characterFiles[charIndex]}");
+        // subir o bajar para que los pies queden en y = 0
+        character.Position -= new Vector3(0, aabb.Position.Y * scale, 0);
     }
-
-    /// <summary>
-    /// Permite que el jugador retracte su selección y vuelva a elegir.
-    /// </summary>
-    private void RetractSelection(Player player)
+    private void PositionCamera(Camera3D cam, Node3D character)
     {
-        if (player == null) return;
+        var aabb = GetCharacterBounds(character);
+        float radius = Mathf.Max(aabb.Size.X, aabb.Size.Z);
 
-        // Solo se puede retractar si estaba confirmado
-        if (lockedSelections.ContainsKey(player) && lockedSelections[player])
-        {
-            lockedSelections[player] = false;
-            GD.Print($"Player {player} retractó su selección de {characterFiles[playerSelections[player]]}");
-        }
+        cam.Position = new Vector3(0, radius * 1.5f, radius * 2f);
+        cam.LookAt(character.GlobalPosition + Vector3.Up * (aabb.Size.Y * 0.5f), Vector3.Up);
     }
-    
+
     #endregion
-    #region SetupSplitScreen
-    /// <summary>
-    /// Creates the split-screen layout based on the player count.
-    /// Uses a GridContainer to automatically arrange viewports.
-    /// </summary>
+
+    #region SplitScreen
+
     private void SetupSplitScreen()
     {
         viewports.Clear();
         cameras.Clear();
 
-        // Remove any existing UI elements
         foreach (Node child in uiRoot.GetChildren())
             child.QueueFree();
 
         int playerCount = PlayerData.GetTempPlayers().Count;
 
-        // Configure grid columns (1 column for single player, 2 otherwise)
         if (uiRoot is GridContainer grid)
             grid.Columns = playerCount <= 1 ? 1 : 2;
 
-        // Create one viewport per player
         for (int i = 0; i < playerCount; i++)
             CreatePlayerViewport(i);
     }
 
-    /// <summary>
-    /// Creates a SubViewportContainer with a SubViewport and a Camera3D
-    /// for the specified player index.
-    /// </summary>
-    /// <param name="index">Player index</param>
     private void CreatePlayerViewport(int index)
     {
         var container = new SubViewportContainer
@@ -265,7 +214,6 @@ public partial class CharacterViewer : Node3D
         };
         uiRoot.AddChild(container);
 
-        // Crear SubViewport
         var viewport = new SubViewport
         {
             World3D = GetViewport().World3D,
@@ -274,7 +222,6 @@ public partial class CharacterViewer : Node3D
         container.AddChild(viewport);
         viewports.Add(viewport);
 
-        // Cámara para este viewport
         var camera = new Camera3D
         {
             Fov = cameraFov,
@@ -283,160 +230,101 @@ public partial class CharacterViewer : Node3D
         viewport.AddChild(camera);
         cameras.Add(camera);
 
-        // Si el jugador NO está conectado, añadimos un panel con mensaje
-        if (index >= PlayerData.GetTempPlayers().Count || !PlayerData.GetTempPlayers()[index].IsConnected())
-        {
-            var panel = new Panel
-            {
-                SizeFlagsHorizontal = Control.SizeFlags.ExpandFill,
-                SizeFlagsVertical = Control.SizeFlags.ExpandFill
-            };
-            container.AddChild(panel);
-
-            var label = new Label
-            {
-                Text = "Press A / ui_accept to join",
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center
-            };
-            panel.AddChild(label);
-        }
-        else
-        {
-            // Si ya está conectado, activamos viewport
+        if (PlayerData.GetTempPlayers()[index].IsConnected())
             viewport.RenderTargetUpdateMode = SubViewport.UpdateMode.Always;
-        }
     }
 
-
-    /// <summary>
-    /// Enables or disables a player's SubViewport depending on whether
-    /// the player is connected.
-    /// </summary>
-    /// <param name="index">Player index</param>
-    private void UpdateViewportState(int index)
-    {
-        var player = PlayerData.GetTempPlayer(index);
-        bool connected = player.IsConnected();
-
-        viewports[index].RenderTargetUpdateMode =
-            connected
-                ? SubViewport.UpdateMode.Always
-                : SubViewport.UpdateMode.Disabled;
-    }
     #endregion
 
     #region Input
-    /// <summary>
-    /// Handles player connection input.
-    /// When the accept action is pressed, assigns the input device
-    /// to the first available player slot.
-    /// </summary>
-    /// <param name="event">Input event</param>
+
     public override void _Input(InputEvent @event)
     {
-        if (!@event.IsActionPressed("ui_accept"))
-            return;
-
-        int deviceId = @event.Device;
-
-        // 1️⃣ Evitar que se conecte el mismo device dos veces
-        if (IsDeviceAlreadyAssigned(deviceId))
-            return;
-
         var tempPlayers = PlayerData.GetTempPlayers();
-
-        // 2️⃣ Buscar primer Player null sin DeviceId
-        for (int i = 0; i < tempPlayers.Count; i++)
+        if (@event.Device >= 0 && !IsDeviceAlreadyAssigned(@event.Device))
         {
-            var player = tempPlayers[i];
-
-            if (player.IsConnected())
-                continue;
-
-            // 3️⃣ Conectar el jugador
-            player.SetDeviceId(deviceId);
-            GD.Print($"Player {i} connected with device {deviceId}");
-
-            // 4️⃣ Ocultar overlay
-            //overlays[i].Visible = false;
-
-            // 5️⃣ Activar viewport
-            viewports[i].RenderTargetUpdateMode = SubViewport.UpdateMode.Always;
-
-            // 6️⃣ Asignar personaje y cámara
-            //AssignCharacterToPlayer(i);
-            //AdjustCameraToCharacter(i);
-
-            break;
+            GD.Print($"Detected device {@event.Device}");
         }
+        SelectCharacter(@event, tempPlayers);
+        ConectDevice(@event, tempPlayers);
+    }
 
+    private void ConectDevice(InputEvent @event, List<Player> tempPlayers)
+    {
+        bool hasDisconectedPlayer = false;
+        foreach (Player player in tempPlayers)
+        {
+            if (!player.IsConnected())
+            {
+                hasDisconectedPlayer = true;
+                break;
+            }
+        }
+        if (@event.IsActionPressed("ui_accept")&& hasDisconectedPlayer)
+        {
+            int deviceId = @event.Device;
+            if (IsDeviceAlreadyAssigned(deviceId)) return;
+
+            for (int i = 0; i < tempPlayers.Count; i++)
+            {
+                if (!tempPlayers[i].IsConnected())
+                {
+                    tempPlayers[i].SetDeviceId(deviceId);
+                    viewports[i].RenderTargetUpdateMode = SubViewport.UpdateMode.Always;
+                    break;
+                }
+            }
+        }
+    }
+
+    private void SelectCharacter(InputEvent @event, List<Player> tempPlayers)
+    {
         foreach (var player in tempPlayers)
         {
             if (!player.IsConnected()) continue;
-            int index = PlayerData.GetTempPlayers().IndexOf(player);
 
             if (!lockedSelections[player])
             {
-                if (player.LeftPressed(@event))
-                    ChangeCharacter(player, -1);
-                else if (player.RightPressed(@event))
-                    ChangeCharacter(player, 1);
-                else if (player.ConfirmPressed(@event))
-                    ConfirmCharacter(player);
+                if (player.LeftPressed(@event)) ChangeCharacter(player, -1);
+                else if (player.RightPressed(@event)) ChangeCharacter(player, 1);
+                else if (player.ConfirmPressed(@event)) ConfirmCharacter(player);
             }
-            
-            if(player.CancelPressed(@event))
+
+            if (player.CancelPressed(@event))
                 RetractSelection(player);
         }
     }
-
-    /// <summary>
-    /// Checks whether a device is already assigned to a player.
-    /// </summary>
-    /// <param name="deviceId">Input device id</param>
-    /// <returns>True if already assigned</returns>
+    
     private bool IsDeviceAlreadyAssigned(int deviceId)
     {
         foreach (var player in PlayerData.GetTempPlayers())
-        {
             if (player.DeviceId == deviceId)
                 return true;
-        }
         return false;
     }
+
     #endregion
+
     private bool AllPlayersConfirmed()
     {
         foreach (var player in PlayerData.GetTempPlayers())
-        {
-            if (!lockedSelections.ContainsKey(player) || !lockedSelections[player])
+            if (!lockedSelections[player])
                 return false;
-        }
         return true;
     }
+
     private void FinalizeSelections()
     {
         if (!AllPlayersConfirmed()) return;
 
-
         for (int i = 0; i < PlayerData.GetTempPlayers().Count; i++)
         {
             var player = PlayerData.GetTempPlayers()[i];
-            var model = activeCharacters[i]; // nodo 3D del personaje seleccionado
-
-            if (model == null) continue;
-
-            
-            
-            // Crear la estructura de jugador para el juego
-            PlayerData.AddPlayer(new Player(player.DeviceId,model));
+            var model = activeCharacters[i];
+            if (model != null)
+                PlayerData.AddPlayer(new Player(player.DeviceId, model));
         }
 
-        // Cambiar de pestaña / escena al juego
-        // Por ejemplo, usando un CanvasLayer de UI o SceneTree
         GetTree().ChangeSceneToPacked(nextScene);
     }
-
-
 }
