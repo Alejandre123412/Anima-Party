@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://c41gjgdhu16sd"]
+[gd_scene load_steps=3 format=3 uid="uid://c41gjgdhu16sd"]
 
 [ext_resource type="Script" uid="uid://b51kvll84afon" path="res://assets/scenes/main/PlayerJugable.cs" id="1_8mokc"]
-[ext_resource type="ArrayMesh" uid="uid://cgd5hkrtpxgyt" path="res://assets/models/default.obj" id="2_4u6eb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tnxd2"]
 size = Vector3(6.6899414, 11.953125, 5.4009094)
@@ -9,8 +8,7 @@ size = Vector3(6.6899414, 11.953125, 5.4009094)
 [node name="PlayerJugable" type="CharacterBody3D"]
 script = ExtResource("1_8mokc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = ExtResource("2_4u6eb")
+[node name="Model" type="Node3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.095458984, 5.4765625, 0.1893158)

@@ -1,0 +1,264 @@
+using Godot;
+using System.Collections.Generic;
+using AnimaParty.assets.script.data;
+using AnimaParty.assets.script.types;
+
+namespace AnimaParty.assets.scenes.Jugadores;
+
+public partial class CharacterViewer : Node3D
+{
+    [Export] private Node3D charactersRoot;
+    [Export] private Node camerasRoot;
+    [Export] private float spacing = 2.5f;
+    [Export] private float targetHeight = 2.0f;
+    [Export] private float cameraLerpSpeed = 5f;
+
+    [Export] private float cameraHeight = 1.5f;
+    [Export] private float cameraDistance = 3.0f;
+    [Export] private float cameraFov = 70f;
+
+    private readonly List<Node3D> characters = new();
+    private readonly List<Camera3D> cameras = new();
+    private readonly List<Label> playerConnectLabels = new();
+    private Control uiRoot => GetNode<Control>("UI"); // Nodo padre para los splits
+
+    public override void _Ready()
+    {
+        LoadCharacters();
+        PositionCharacters();
+        SetupSplitScreenDynamic();
+    }
+
+    #region SplitScreen Modular
+
+    private void SetupSplitScreenDynamic()
+    {
+        cameras.Clear();
+
+        // Limpiar hijos existentes en UI
+        foreach (var child in uiRoot.GetChildren())
+            ((Node)child).QueueFree();
+
+        int playerCount = PlayerData.PlayerCount;
+
+        if (playerCount == 1)
+        {
+            AddPlayerCamera(uiRoot, 0);
+        }
+        else if (playerCount == 2)
+        {
+            var hSplit = new HSplitContainer();
+            uiRoot.AddChild(hSplit);
+
+            AddPlayerCamera(hSplit, 0);
+            AddPlayerCamera(hSplit, 1);
+        }
+        else // 3 o 4 jugadores
+        {
+            var vSplit = new VSplitContainer();
+            uiRoot.AddChild(vSplit);
+
+            var topRow = new HSplitContainer();
+            var bottomRow = new HSplitContainer();
+
+            vSplit.AddChild(topRow);
+            vSplit.AddChild(bottomRow);
+
+            AddPlayerCamera(topRow, 0);
+            if (playerCount > 1) AddPlayerCamera(topRow, 1);
+            if (playerCount > 2) AddPlayerCamera(bottomRow, 2);
+            if (playerCount > 3) AddPlayerCamera(bottomRow, 3);
+        }
+        
+        foreach (var player in PlayerData.Players)
+        {
+            if (player.Id < 0)
+            {
+                // Crear un Label centrado en su cámara/placeholder
+                var label = new Label
+                {
+                    Text = "Presiona un botón para conectar el dispositivo",
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Theme = uiRoot.GetTheme() // Opcional: usar el tema de UI principal
+                };
+
+                // Lo añadimos al UI root para que esté visible
+                uiRoot.AddChild(label);
+                playerConnectLabels.Add(label);
+
+                // Guardar referencia al jugador para el label
+                label.SetMeta("player", player.PlayerID);
+            }
+        }
+
+    }
+
+    private void AddPlayerCamera(Control parent, int playerIndex)
+    {
+        // Control placeholder para dividir el SplitContainer
+        var container = new Control();
+        parent.AddChild(container);
+
+        // Cámara real en 3D
+        var cam = new Camera3D
+        {
+            Current = true,
+            Fov = cameraFov,
+            Name = $"Camera_Player_{playerIndex + 1}"
+        };
+        camerasRoot.AddChild(cam);
+        cameras.Add(cam);
+    }
+
+    #endregion
+
+    #region Characters
+
+    private void LoadCharacters()
+    {
+        var dir = DirAccess.Open("res://assets/models/characters");
+        if (dir == null)
+        {
+            GD.PrintErr("No se pudo abrir la carpeta de personajes");
+            return;
+        }
+
+        dir.ListDirBegin();
+        string fileName;
+
+        while ((fileName = dir.GetNext()) != "")
+        {
+            if (dir.CurrentIsDir() || fileName.StartsWith(".")) continue;
+            if (!fileName.EndsWith(".glb") && !fileName.EndsWith(".gltf") && !fileName.EndsWith(".blend")) continue;
+
+            var scene = ResourceLoader.Load<PackedScene>($"res://assets/models/characters/{fileName}");
+            if (scene == null) continue;
+
+            var instance = scene.Instantiate<Node3D>();
+            ScaleToTargetHeight(instance, targetHeight);
+
+            charactersRoot.AddChild(instance);
+            characters.Add(instance);
+        }
+
+        dir.ListDirEnd();
+    }
+
+    private void ScaleToTargetHeight(Node3D node, float targetHeight)
+    {
+        float maxY = 0f;
+
+        foreach (var child in node.GetChildren(true))
+        {
+            if (child is MeshInstance3D mesh && mesh.Mesh != null)
+                maxY = Mathf.Max(maxY, mesh.Mesh.GetAabb().Size.Y * mesh.Scale.Y);
+        }
+
+        if (maxY > 0f)
+            node.Scale = Vector3.One * (targetHeight / maxY);
+    }
+
+    private void PositionCharacters()
+    {
+        float offset = (characters.Count - 1) * spacing * 0.5f;
+
+        for (int i = 0; i < characters.Count; i++)
+        {
+            var c = characters[i];
+            c.Position = new Vector3(i * spacing - offset, 0, 0);
+            c.LookAt(Vector3.Zero, Vector3.Up);
+        }
+    }
+
+    private bool IsCharacterAvailable(int characterIndex, Player requestingPlayer)
+    {
+        foreach (var player in PlayerData.Players)
+        {
+            if (player == requestingPlayer) 
+                continue;
+
+            if (player.selectedCharacter == characterIndex && player.isSelectedCharacter)
+                return false;
+        }
+        return true;
+    }
+
+    #endregion
+
+    #region Camera Follow
+
+    public override void _Process(double delta)
+    {
+        for (int i = 0; i < PlayerData.PlayerCount && i < cameras.Count; i++)
+        {
+            var player = PlayerData.Players[i];
+
+            if (player.selectedCharacter < 0 || player.selectedCharacter >= characters.Count)
+                continue;
+
+            var target = characters[player.selectedCharacter];
+            var cam = cameras[i];
+
+            float distance = player.isSelectedCharacter ? cameraDistance * 0.5f : cameraDistance;
+            
+            Vector3 desiredPos = target.GlobalPosition + new Vector3(0, cameraHeight, distance);
+            cam.GlobalPosition = cam.GlobalPosition.Lerp(desiredPos, (float)(cameraLerpSpeed * delta));
+            cam.LookAt(target.GlobalPosition, Vector3.Up);
+        }
+    }
+
+    #endregion
+
+    #region Input
+
+    public override void _Input(InputEvent @event)
+    {
+        if(@event.Device<0)
+        {
+            foreach (var player in PlayerData.Players)
+            {
+                // Ignorar jugadores ya conectados
+                if (player.Id >= 0)
+                    continue;
+
+                // Si el jugador pulsa cualquier botón (ejemplo: "ui_accept"), conectamos
+                if (player.confirmPressed(@event)) // Aquí defines qué botón conecta
+                {
+                    // Asignar un id al jugador (simulamos dispositivo)
+                    player.SetDeviceId(@event.Device); // Implementar esta función según tu sistema
+
+                    GD.Print($"Jugador conectado: {player.Id}");
+
+                    // Ocultar el label correspondiente
+                    foreach (var label in playerConnectLabels)
+                    {
+                        if ((int)label.GetMeta("player") == player.PlayerID)
+                        {
+                            label.QueueFree();
+                            break;
+                        }
+                    }
+                }
+            } 
+        }
+        foreach (var player in PlayerData.Players)
+        {
+            
+            int current = player.selectedCharacter;
+
+            if (player.leftPressed(@event)&&!player.isSelectedCharacter)
+                current = (current - 1 + characters.Count) % characters.Count;
+            else if (player.rightPressed(@event)&&!player.isSelectedCharacter)
+                current = (current + 1) % characters.Count;
+            else if (player.confirmPressed(@event))
+                player.isSelectedCharacter = true;
+            else if(player.cancelPressed(@event))
+                player.isSelectedCharacter = false;
+
+            player.selectedCharacter = current;
+        }
+    }
+
+    #endregion
+}

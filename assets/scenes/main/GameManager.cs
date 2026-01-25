@@ -1,56 +1,91 @@
 using Godot;
 using System.Collections.Generic;
 using AnimaParty.assets.script.data;
+using AnimaParty.assets.script.types;
 
 namespace AnimaParty.assets.scenes.main;
+
 public partial class GameManager : Node3D
 {
-    [Export] public PackedScene PlayerScene;
-    [Export] public Node3D Players;
-
-    public int PlayerCount = 1;
-    public List<Mesh> SelectedMeshes = new();
+    [Export] public PackedScene PlayerScene; // La escena base del jugador
+    [Export] public Node3D PlayersRoot;      // Nodo donde se añadirán los jugadores
+    [Export] public Node3D CharactersRoot;   // Nodo con los modelos cargados (CharacterViewer)
 
     public override void _Ready()
     {
-        PlayerCount = PlayerData.PlayerCount;
-        SelectedMeshes = PlayerData.SelectedMeshes;
         SpawnPlayers();
     }
 
     private void SpawnPlayers()
     {
+        if (PlayerData.PlayerCount == 0)
+        {
+            GD.PrintErr("No hay jugadores registrados en PlayerData.");
+            return;
+        }
+
         PlayerJugable leader = null;
 
-        for (int i = 0; i < PlayerCount; i++)
+        if (PlayerData.HasNullPlayerList())
+            return;
+
+        for (int i = 0; i < PlayerData.PlayerCount; i++)
         {
-            PlayerJugable player = PlayerScene.Instantiate<PlayerJugable>();
-            Players.AddChild(player);
+            var pdata = PlayerData.Players[i];
 
-            player.Name = $"Player_{i + 1}";
-            player.GlobalPosition = new Vector3(0, 0, i * 1.2f);
+            // Instanciamos el jugador
+            var playerInstance = PlayerScene.Instantiate<PlayerJugable>();
+            PlayersRoot.AddChild(playerInstance);
 
-            ApplyMesh(player, i);
+            playerInstance.Name = $"Player_{i + 1}";
+            playerInstance.GlobalPosition = new Vector3(i * 2.0f, 0, 0); // separarlos un poco
 
+            // Guardamos la referencia de la instancia en Player.player
+            pdata.player = playerInstance;
+
+            // Aplicamos el modelo seleccionado
+            ApplySelectedCharacter(pdata);
+
+            // Configuramos líder y seguidores
             if (i == 0)
             {
-                player.IsLeader = true;
-                leader = player;
+                playerInstance.isLeader = true;
+                leader = playerInstance;
             }
             else
             {
-                player.IsLeader = false;
-                player.LeaderPath = player.GetPathTo(leader);
+                playerInstance.isLeader = false;
+                playerInstance.leaderPath = playerInstance.GetPathTo(leader);
             }
         }
     }
 
-    private void ApplyMesh(PlayerJugable player, int index)
+    private void ApplySelectedCharacter(Player pdata)
     {
-        if (index >= SelectedMeshes.Count)
+        if (pdata.player == null)
+        {
+            GD.PrintErr($"Player {pdata} no tiene instancia asignada.");
             return;
+        }
 
-        var meshInstance = player.GetNode<MeshInstance3D>("MeshInstance3D");
-        meshInstance.Mesh = SelectedMeshes[index];
+        // Obtenemos el nodo del personaje seleccionado
+        Node3D selectedCharacter = pdata.player;
+        if (selectedCharacter == null)
+        {
+            GD.PrintErr($"Player {pdata} no tiene personaje seleccionado.");
+            return;
+        }
+
+        // Limpiar hijos anteriores del player
+        foreach (Node child in pdata.player.GetChildren())
+            child.QueueFree();
+
+        // Hacer que el modelo seleccionado sea hijo del player
+        pdata.player.AddChild(selectedCharacter);
+
+        // Ajustar transform para que quede en el lugar correcto
+        selectedCharacter.Transform = Transform3D.Identity;
     }
+
+
 }

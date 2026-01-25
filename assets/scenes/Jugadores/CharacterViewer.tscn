@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://7iqilvb6h5e3"]
+
+[ext_resource type="Script" uid="uid://cfyyuujdmorah" path="res://assets/scenes/Jugadores/CharacterViewer.cs" id="1_miedh"]
+[ext_resource type="PackedScene" uid="uid://du1d7h4ppjh64" path="res://assets/scenes/main/MainIsland.tscn" id="2_y7tdq"]
+
+[sub_resource type="Sky" id="Sky_miedh"]
+
+[sub_resource type="Environment" id="Environment_miedh"]
+background_mode = 1
+background_color = Color(0.07704566, 0.48179954, 0.9999729, 1)
+sky = SubResource("Sky_miedh")
+ambient_light_source = 3
+ambient_light_color = Color(0, 0.49387813, 0.8794313, 1)
+ambient_light_energy = 8.0
+
+[node name="CharacterViewer" type="Node3D" node_paths=PackedStringArray("uiRoot")]
+script = ExtResource("1_miedh")
+nextScene = ExtResource("2_y7tdq")
+uiRoot = NodePath("UI/ViewPorts")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ViewPorts" type="GridContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="CharactersRoot" type="Node3D" parent="."]
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
+transform = Transform3D(-1, 8.742277e-08, -4.759732e-16, -6.1431955e-08, -0.7026996, 0.71148664, 6.2200144e-08, 0.71148664, 0.7026996, 0, 16.35744, 11.205847)
+light_energy = 10.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_miedh")

@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="329c87af-3d27-407d-bd1d-5880f151de81" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/scenes/Jugadores/PlayerCameraController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/script/mod/AssemblyLoader.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/script/mod/CharacterRegistry.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/script/mod/CoreMod.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/script/mod/IModEntry.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/script/mod/JsonLoader.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/script/mod/MinigameRegistry.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/script/mod/ModContext.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/script/mod/ModData.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/script/mod/ModFileSystem.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/script/mod/ModLoader.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/script/mod/ModRegistry.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/script/mod/boostrap/GameBootstrap.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/script/types/PlayerInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core_mod/mod.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core_mod/scripts/BaseClases.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core_mod/scripts/Interfaces.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core_mod/scripts/Registry.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Anima Party/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Anima Party/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Anima Party/.idea/dbnavigator.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Anima Party/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Anima Party/.idea/indexLayout.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Anima Party/.idea/libraries/GdSdk.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Anima Party/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.anima-party.dir/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.anima-party/.idea/contentModel.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.anima-party/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.anima-party/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.anima-party/riderModule.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anima Party.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Anima Party.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/controller/ai_controller_2d.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/controller/ai_controller_2d.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/controller/ai_controller_3d.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/controller/ai_controller_3d.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/godot_rl_agents.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/godot_rl_agents.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/icon.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/onnx/csharp/ONNXInference.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/onnx/csharp/ONNXInference.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/onnx/csharp/SessionConfigurator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/onnx/csharp/SessionConfigurator.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/onnx/csharp/docs/ONNXInference.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/onnx/csharp/docs/SessionConfigurator.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/onnx/wrapper/ONNX_wrapper.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/onnx/wrapper/ONNX_wrapper.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/plugin.cfg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_2d/ExampleRaycastSensor2D.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_2d/GridSensor2D.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_2d/GridSensor2D.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_2d/ISensor2D.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_2d/ISensor2D.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_2d/RaycastSensor2D.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_2d/RaycastSensor2D.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_2d/RaycastSensor2D.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_3d/ExampleRaycastSensor3D.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_3d/GridSensor3D.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_3d/GridSensor3D.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_3d/ISensor3D.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_3d/ISensor3D.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_3d/RGBCameraSensor3D.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_3d/RGBCameraSensor3D.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_3d/RGBCameraSensor3D.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_3d/RaycastSensor3D.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_3d/RaycastSensor3D.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sensors/sensors_3d/RaycastSensor3D.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sync.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/godot_rl_agents/sync.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/anima-party.sln" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/models/kight.glb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/models/kight.glb.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/models/kight_Image_0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/models/kight_Image_0.jpg.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/models/kight_Image_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/models/kight_Image_1.jpg.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/models/kight_Image_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/models/kight_Image_2.jpg.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scenes/Jugadores/CharacterSelection.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scenes/Jugadores/CharacterSelection.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scenes/Jugadores/CharactersView.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scenes/Jugadores/PlayerCount.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scenes/Jugadores/PlayerCount.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scenes/Jugadores/PlayerCount.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scenes/Jugadores/PlayerCount.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scenes/Jugadores/PlayerSelection.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scenes/Jugadores/PlayerSelection.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scenes/Jugadores/PlayerSelection.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scenes/Jugadores/PlayerSlot.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scenes/main/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scenes/main/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scenes/main/PlayerJugable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scenes/main/PlayerJugable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scenes/main/PlayerJugable.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scenes/main/PlayerJugable.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scenes/player/Player.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scenes/player/Player.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scenes/player/Player.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scenes/table/PlayerCountPanel.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scenes/table/PlayerCountPanel.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scenes/table/PlayerSelect3D.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scenes/table/PlayerSelect3d.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scenes/table/PlayerSelect3d.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scenes/table/PlayerSlot.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scenes/table/PlayerSlot.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scenes/table/Players.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scenes/table/Players.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scenes/title/TitleScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scenes/title/TitleScreen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scenes/title/TitleScreen.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scenes/title/TitleScreen.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/script/controllers/PlayerSelect3DController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/script/controllers/PlayerSelect3DController.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/script/data/Device.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/script/data/Device.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/script/data/GameData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/script/data/GameData.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/script/data/PlayerData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/script/data/PlayerData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/script/types/PlayerSlotState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/script/types/PlayerSlotState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DpaMonitoringSettings">
+    <option name="firstShow" value="false" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JSON File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3f4de5d08361312bf810502cb534e99bb624df54b3caca3aa7cd72fc5841c1/NativeCalls.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/62d85c381e235d2955249b38ebaab4ce425ddc5bbf1c5a2e03382cdefcb033/ResourceLoader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9b2dbc5655dfd422fbe99c144c21f6096c01814c51d32bc408e934beb184e36/Json.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/df61b6148ca71eef8cf4e56545a9319fd2647f05d2f959dad42d9fcbe95192/GD_constants.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/assets/scenes/Jugadores/PlayerCameraController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/assets/scenes/Jugadores/PlayerCount.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/assets/script/mod/AssemblyLoader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/assets/script/mod/CharacterRegistry.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/assets/script/mod/CoreMod.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/assets/script/mod/IModEntry.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/assets/script/mod/JsonLoader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/assets/script/mod/MinigameRegistry.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/assets/script/mod/ModContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/assets/script/mod/ModData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/assets/script/mod/ModFileSystem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/assets/script/mod/ModLoader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/assets/script/mod/ModRegistry.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/assets/script/mod/boostrap/GameBootstrap.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/assets/script/types/PlayerInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core_mod/scripts/BaseClases.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core_mod/scripts/Interfaces.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core_mod/scripts/Registry.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="38gsIWh5s9QsUqSrGLbABztNjEX" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Executable.Player.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected=".NET Executable.Player">
+    <configuration name="Debug GDScript (Running session)" type="GDSCRIPT_DEBUG_RUN_CONFIGURATION" factoryName="GdScriptRunFactory">
+      <option name="json" value="{&#10;  // Launch: &quot;Launch a new instance of the game&quot;,&#10;  // Attach: &quot;Attach to an already running game, which was started from the Godot Editor&quot;&#10;  &quot;request&quot; : &quot;Attach&quot;,&#10;  &quot;debugServer&quot; : 6006, // port should match the Debug Adapter port in the Godot Editor project settings.&#10;  &quot;scene&quot; : &quot;main&quot;, // main, current, res://path/to/file.tscn&#10;  &#10;  // &quot;playArgs&quot; : [ &quot;--editor&quot; ], // debugging a tool script&#10;  // &quot;playArgs&quot;: [&quot;--debug-collisions&quot;,&quot;--debug-navigation&quot;], // different options&#10;  &#10;  // one click deploy and debug via Godot Editor:&#10;  // &quot;platform&quot;: &quot;Android&quot;, // including Android, iOS, Web and W4 consoles&#10;  // &quot;device&quot;: &quot;0&quot;, // index of the device of a &quot;platform&quot; type&#10;}" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Player GDScript" type="GDSCRIPT_DEBUG_RUN_CONFIGURATION" factoryName="GdScriptRunFactory">
+      <option name="json" value="{&#10;  // Launch: &quot;Launch a new instance of the game&quot;,&#10;  // Attach: &quot;Attach to an already running game, which was started from the Godot Editor&quot;&#10;  &quot;request&quot; : &quot;Launch&quot;,&#10;  &quot;debugServer&quot; : 6006, // port should match the Debug Adapter port in the Godot Editor project settings.&#10;  &quot;scene&quot; : &quot;main&quot;, // main, current, res://path/to/file.tscn&#10;  &#10;  // &quot;playArgs&quot; : [ &quot;--editor&quot; ], // debugging a tool script&#10;  // &quot;playArgs&quot;: [&quot;--debug-collisions&quot;,&quot;--debug-navigation&quot;], // different options&#10;  &#10;  // one click deploy and debug via Godot Editor:&#10;  // &quot;platform&quot;: &quot;Android&quot;, // including Android, iOS, Web and W4 consoles&#10;  // &quot;device&quot;: &quot;0&quot;, // index of the device of a &quot;platform&quot; type&#10;}" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Editor" type="RunExe" factoryName=".NET Executable">
+      <option name="EXE_PATH" value="$USER_HOME$/Downloads/Godot_v4.5.1-stable_mono_win64/Godot_v4.5.1-stable_mono_win64/Godot_v4.5.1-stable_mono_win64.exe" />
+      <option name="PROGRAM_PARAMETERS" value="--path &quot;./&quot; --editor" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\aangb\Documents\anima-party" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="AUTO_ATTACH_CHILDREN" value="0" />
+      <option name="RUNTIME_TYPE" value="coreclr" />
+      <method v="2">
+        <option name="Build Solution" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Player" type="RunExe" factoryName=".NET Executable">
+      <option name="EXE_PATH" value="$USER_HOME$/Downloads/Godot_v4.5.1-stable_mono_win64/Godot_v4.5.1-stable_mono_win64/Godot_v4.5.1-stable_mono_win64.exe" />
+      <option name="PROGRAM_PARAMETERS" value="--path &quot;./&quot;" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\aangb\Documents\anima-party" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="AUTO_ATTACH_CHILDREN" value="0" />
+      <option name="RUNTIME_TYPE" value="coreclr" />
+      <method v="2">
+        <option name="Build Solution" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Editor" type="RunNativeExe" factoryName="Native Executable">
+      <option name="EXE_PATH" value="$USER_HOME$/Downloads/Godot_v4.5.1-stable_mono_win64/Godot_v4.5.1-stable_mono_win64/Godot_v4.5.1-stable_mono_win64.exe" />
+      <option name="PROGRAM_PARAMETERS" value="--path &quot;./&quot; --editor" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\aangb\Documents\anima-party" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="329c87af-3d27-407d-bd1d-5880f151de81" name="Changes" comment="" />
+      <created>1769232470528</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1769232470528</updated>
+      <workItem from="1769232471586" duration="41602000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.OperationCanceledException" breakIfHandledByOtherCode="false" displayValue="System.OperationCanceledException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.Tasks.TaskCanceledException" breakIfHandledByOtherCode="false" displayValue="System.Threading.Tasks.TaskCanceledException" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

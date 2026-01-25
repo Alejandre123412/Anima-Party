@@ -4,35 +4,35 @@ using System;
 namespace AnimaParty.assets.scenes.main;
 public partial class PlayerJugable : CharacterBody3D
 {
-	[Export] public bool IsLeader = false;
-	[Export] public NodePath LeaderPath;
+	[Export] public bool isLeader = false;
+	[Export] public NodePath leaderPath;
 
-	private CharacterBody3D _leader;
+	private CharacterBody3D leader;
 
-	[Export] public float Speed = 6f;
-	[Export] public float FollowDistance = 1.5f;
+	[Export] public float speed = 6f;
+	[Export] public float followDistance = 1.5f;
 
 	public override void _Ready()
 	{
-		if (!IsLeader && LeaderPath != null)
+		if (!isLeader && leaderPath != null)
 		{
-			_leader = GetNode<CharacterBody3D>(LeaderPath);
+			leader = GetNode<CharacterBody3D>(leaderPath);
 		}
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if (IsLeader)
+		if (isLeader)
 		{
-			HandleInput((float)delta);
+			handleInput((float)delta);
 		}
 		else
 		{
-			FollowLeader((float)delta);
+			followLeader((float)delta);
 		}
 	}
 
-	private void HandleInput(float delta)
+	private void handleInput(float delta)
 	{
 		Vector2 input = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 
@@ -40,23 +40,23 @@ public partial class PlayerJugable : CharacterBody3D
 		if (dir.Length() > 0)
 			dir = dir.Normalized();
 
-		Velocity = dir * Speed;
+		Velocity = dir * speed;
 		MoveAndSlide();
 	}
 
-	private void FollowLeader(float delta)
+	private void followLeader(float delta)
 	{
-		if (_leader == null)
+		if (leader == null)
 			return;
 
-		Vector3 targetPos = _leader.GlobalTransform.Origin -
-		                    _leader.GlobalTransform.Basis.Z * FollowDistance;
+		Vector3 targetPos = leader.GlobalTransform.Origin -
+		                    leader.GlobalTransform.Basis.Z * followDistance;
 
 		Vector3 dir = targetPos - GlobalTransform.Origin;
 
 		if (dir.Length() > 0.1f)
 		{
-			Velocity = dir.Normalized() * Speed;
+			Velocity = dir.Normalized() * speed;
 			MoveAndSlide();
 		}
 		else

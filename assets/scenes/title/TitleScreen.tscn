@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1cvoryma1p2d"]
+[gd_scene load_steps=6 format=3 uid="uid://c1cvoryma1p2d"]
 
 [ext_resource type="Script" uid="uid://yvwbxhcqkju5" path="res://assets/script/effects/TitleBackground.gd" id="1_ak2if"]
 [ext_resource type="Script" uid="uid://geqkkbpfbcwa" path="res://assets/scenes/title/TitleScreen.cs" id="2_60wdv"]
+[ext_resource type="PackedScene" uid="uid://brp67mf12q5g6" path="res://assets/scenes/Jugadores/PlayerCount.tscn" id="3_vj26a"]
 
 [sub_resource type="Gradient" id="Gradient_1s85s"]
 colors = PackedColorArray(0, 0, 0, 1, 0.0825, 0.13200001, 0.33, 1)
@@ -82,3 +83,4 @@ vertical_alignment = 2
 
 [node name="SceneController" type="Node" parent="."]
 script = ExtResource("2_60wdv")
+nextScene = ExtResource("3_vj26a")

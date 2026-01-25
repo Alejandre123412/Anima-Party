@@ -1,0 +1,16 @@
+<Project Sdk="Godot.NET.Sdk/4.5.1">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'android' ">net9.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <RootNamespace>AnimaParty</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="assets\script\input\" />
+    <Folder Include="assets\script\utils\" />
+    <Folder Include="core_mod\scenes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="core_mod\mod.json" />
+  </ItemGroup>
+</Project>
