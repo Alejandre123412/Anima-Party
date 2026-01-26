@@ -50,7 +50,7 @@ public partial class GameManager : Node
 			if (node == null) continue;
 
 			PlayersRoot.AddChild(node);
-			node.GlobalPosition = new Vector3(i * PlayerSpacing, 0, 0);
+			node.GlobalPosition = new Vector3(i * PlayerSpacing, 3, -6);
 
 			// Primer jugador = líder
 			if (i == 0)
