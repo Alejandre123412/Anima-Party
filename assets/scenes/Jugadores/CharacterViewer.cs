@@ -1,35 +1,37 @@
 using Godot;
 using System.Collections.Generic;
-using AnimaParty.assets.script.data;
 using AnimaParty.assets.script.types;
+using AnimaParty.autoload;
+using GlobalNodes = AnimaParty.autoload.GlobalNodes;
 
 namespace AnimaParty.assets.scenes.Jugadores;
 
 public partial class CharacterViewer : Node3D
 {
-    [Export] private PackedScene nextScene;
-    [Export] private Control uiRoot;
-    [Export] private float cameraFov = 70f;
+    [Export] private PackedScene _nextScene;
+    [Export] private Control _uiRoot;
+    [Export] private float _cameraFov = 70f;
 
-    private readonly List<SubViewport> viewports = new();
-    private readonly List<Camera3D> cameras = new();
-    private readonly List<Node3D?> activeCharacters = new();
+    private readonly List<SubViewport> _viewports = new();
+    private readonly List<Camera3D> _cameras = new();
+    #nullable enable
+    private readonly List<Node3D?> _activeCharacters = new();
 
-    private readonly Dictionary<Player, int> playerSelections = new();
-    private readonly Dictionary<Player, bool> lockedSelections = new();
+    private readonly Dictionary<Player, int> _playerSelections = new();
+    private readonly Dictionary<Player, bool> _lockedSelections = new();
 
-    private List<PackedScene> characterScenes = new();
+    private readonly List<PackedScene> _characterScenes = new();
 
     public override void _Ready()
     {
-        characterScenes = LoadCharacterScenes("res://assets/models/characters/");
+        LoadCharacterScenes("res://assets/models/characters/");
         SetupSplitScreen();
 
-        var players = PlayerData.GetTempPlayers();
+        var players = PlayerData.Instance.GetTempPlayers();
         for (int i = 0; i < players.Count; i++)
         {
-            playerSelections[players[i]] = 0;
-            lockedSelections[players[i]] = false;
+            _playerSelections[players[i]] = 0;
+            _lockedSelections[players[i]] = false;
             AssignCharacterToPlayer(players[i], 0);
         }
     }
@@ -41,11 +43,10 @@ public partial class CharacterViewer : Node3D
 
     #region Characters
 
-    private List<PackedScene> LoadCharacterScenes(string folderPath)
+    private void LoadCharacterScenes(string folderPath)
     {
-        var list = new List<PackedScene>();
         var dir = DirAccess.Open(folderPath);
-        if (dir == null) return list;
+        if (dir == null) return;
 
         dir.ListDirBegin();
         while (true)
@@ -57,49 +58,47 @@ public partial class CharacterViewer : Node3D
 
             var scene = GD.Load<PackedScene>($"{folderPath}{file}");
             if (scene != null)
-                list.Add(scene);
+                _characterScenes.Add(scene);
         }
         dir.ListDirEnd();
-
-        return list;
     }
 
     private void AssignCharacterToPlayer(Player player, int characterIndex)
     {
-        int playerIndex = PlayerData.GetTempPlayers().IndexOf(player);
-        if (playerIndex < 0 || playerIndex >= viewports.Count) return;
+        int playerIndex = PlayerData.Instance.GetTempPlayers().IndexOf(player);
+        if (playerIndex < 0 || playerIndex >= _viewports.Count) return;
 
-        if (activeCharacters.Count > playerIndex && activeCharacters[playerIndex] != null)
+        if (_activeCharacters.Count > playerIndex && _activeCharacters[playerIndex] != null)
         {
-            activeCharacters[playerIndex]!.QueueFree();
-            activeCharacters[playerIndex] = null;
+            _activeCharacters[playerIndex]!.QueueFree();
+            _activeCharacters[playerIndex] = null;
         }
 
-        var instance = characterScenes[characterIndex].Instantiate<Node3D>();
-        viewports[playerIndex].AddChild(instance);
+        var instance = _characterScenes[characterIndex].Instantiate<Node3D>();
+        _viewports[playerIndex].AddChild(instance);
 
-        if (activeCharacters.Count <= playerIndex)
-            activeCharacters.Add(instance);
+        if (_activeCharacters.Count <= playerIndex)
+            _activeCharacters.Add(instance);
         else
-            activeCharacters[playerIndex] = instance;
+            _activeCharacters[playerIndex] = instance;
 
         NormalizeCharacter(instance);
-        PositionCamera(cameras[playerIndex], instance);
+        PositionCamera(_cameras[playerIndex], instance);
 
-        playerSelections[player] = characterIndex;
+        _playerSelections[player] = characterIndex;
     }
 
     private void ChangeCharacter(Player player, int delta)
     {
-        if (lockedSelections[player]) return;
+        if (_lockedSelections[player]) return;
 
-        int current = playerSelections[player];
-        int count = characterScenes.Count;
+        int current = _playerSelections[player];
+        int count = _characterScenes.Count;
         int next = (current + delta + count) % count;
 
-        foreach (var kv in lockedSelections)
+        foreach (var kv in _lockedSelections)
         {
-            if (kv.Key != player && kv.Value && playerSelections[kv.Key] == next)
+            if (kv.Key != player && kv.Value && _playerSelections[kv.Key] == next)
                 return;
         }
 
@@ -108,13 +107,13 @@ public partial class CharacterViewer : Node3D
 
     private void ConfirmCharacter(Player player)
     {
-        lockedSelections[player] = true;
+        _lockedSelections[player] = true;
     }
 
     private void RetractSelection(Player player)
     {
-        if (lockedSelections[player])
-            lockedSelections[player] = false;
+        if (_lockedSelections[player])
+            _lockedSelections[player] = false;
     }
 
     #endregion
@@ -189,15 +188,15 @@ public partial class CharacterViewer : Node3D
 
     private void SetupSplitScreen()
     {
-        viewports.Clear();
-        cameras.Clear();
+        _viewports.Clear();
+        _cameras.Clear();
 
-        foreach (Node child in uiRoot.GetChildren())
+        foreach (Node child in _uiRoot.GetChildren())
             child.QueueFree();
 
-        int playerCount = PlayerData.GetTempPlayers().Count;
+        int playerCount = PlayerData.Instance.GetTempPlayers().Count;
 
-        if (uiRoot is GridContainer grid)
+        if (_uiRoot is GridContainer grid)
             grid.Columns = playerCount <= 1 ? 1 : 2;
 
         for (int i = 0; i < playerCount; i++)
@@ -212,7 +211,7 @@ public partial class CharacterViewer : Node3D
             SizeFlagsHorizontal = Control.SizeFlags.ExpandFill,
             SizeFlagsVertical = Control.SizeFlags.ExpandFill
         };
-        uiRoot.AddChild(container);
+        _uiRoot.AddChild(container);
 
         var viewport = new SubViewport
         {
@@ -220,17 +219,17 @@ public partial class CharacterViewer : Node3D
             RenderTargetUpdateMode = SubViewport.UpdateMode.Disabled
         };
         container.AddChild(viewport);
-        viewports.Add(viewport);
+        _viewports.Add(viewport);
 
         var camera = new Camera3D
         {
-            Fov = cameraFov,
+            Fov = _cameraFov,
             Current = true
         };
         viewport.AddChild(camera);
-        cameras.Add(camera);
+        _cameras.Add(camera);
 
-        if (PlayerData.GetTempPlayers()[index].IsConnected())
+        if (PlayerData.Instance.GetTempPlayers()[index].IsConnected())
             viewport.RenderTargetUpdateMode = SubViewport.UpdateMode.Always;
     }
 
@@ -240,7 +239,7 @@ public partial class CharacterViewer : Node3D
 
     public override void _Input(InputEvent @event)
     {
-        var tempPlayers = PlayerData.GetTempPlayers();
+        var tempPlayers = PlayerData.Instance.GetTempPlayers();
         if (@event.Device >= 0 && !IsDeviceAlreadyAssigned(@event.Device))
         {
             GD.Print($"Detected device {@event.Device}");
@@ -270,7 +269,7 @@ public partial class CharacterViewer : Node3D
                 if (!tempPlayers[i].IsConnected())
                 {
                     tempPlayers[i].SetDeviceId(deviceId);
-                    viewports[i].RenderTargetUpdateMode = SubViewport.UpdateMode.Always;
+                    _viewports[i].RenderTargetUpdateMode = SubViewport.UpdateMode.Always;
                     break;
                 }
             }
@@ -283,7 +282,7 @@ public partial class CharacterViewer : Node3D
         {
             if (!player.IsConnected()) continue;
 
-            if (!lockedSelections[player])
+            if (!_lockedSelections[player])
             {
                 if (player.LeftPressed(@event)) ChangeCharacter(player, -1);
                 else if (player.RightPressed(@event)) ChangeCharacter(player, 1);
@@ -297,7 +296,7 @@ public partial class CharacterViewer : Node3D
     
     private bool IsDeviceAlreadyAssigned(int deviceId)
     {
-        foreach (var player in PlayerData.GetTempPlayers())
+        foreach (var player in PlayerData.Instance.GetTempPlayers())
             if (player.DeviceId == deviceId)
                 return true;
         return false;
@@ -307,8 +306,8 @@ public partial class CharacterViewer : Node3D
 
     private bool AllPlayersConfirmed()
     {
-        foreach (var player in PlayerData.GetTempPlayers())
-            if (!lockedSelections[player])
+        foreach (var player in PlayerData.Instance.GetTempPlayers())
+            if (!_lockedSelections[player])
                 return false;
         return true;
     }
@@ -317,14 +316,28 @@ public partial class CharacterViewer : Node3D
     {
         if (!AllPlayersConfirmed()) return;
 
-        for (int i = 0; i < PlayerData.GetTempPlayers().Count; i++)
+        for (int i = 0; i < PlayerData.Instance.GetTempPlayers().Count; i++)
         {
-            var player = PlayerData.GetTempPlayers()[i];
-            var model = activeCharacters[i];
+            var player = PlayerData.Instance.GetTempPlayers()[i];
+            var model = _activeCharacters[i];
+
             if (model != null)
-                PlayerData.AddPlayer(new Player(player.DeviceId, model));
+            {
+                // 1️⃣ Reparentar a nodo global para que no se destruya
+                model.GetParent()?.RemoveChild(model);
+                GlobalNodes.Instance.AddChild(model);
+
+                // 2️⃣ Guardar en PlayerData
+                PlayerData.Instance.AddPlayer(new Player(player.DeviceId, model));
+
+                // 3️⃣ Guardar en lista global de personajes
+                if (!GlobalNodes.Instance.Characters.Contains(model))
+                    GlobalNodes.Instance.Characters.Add(model);
+            }
         }
 
-        GetTree().ChangeSceneToPacked(nextScene);
+        // 4️⃣ Cambiar de escena
+        GetTree().ChangeSceneToPacked(_nextScene);
     }
+
 }

@@ -5,4 +5,8 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>AnimaParty</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="assets\script\controllers\" />
+    <Folder Include="assets\script\data\" />
+  </ItemGroup>
 </Project>

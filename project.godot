@@ -16,6 +16,11 @@ config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 <<<<<<<HEADconfig/features=PackedStringArray("4.5", "Forward Plus")
 
+[autoload]
+
+GlobalNodes="*res://autoload/GlobalNodes.cs"
+PlayerData="*res://autoload/PlayerData.cs"
+
 [dotnet]
 
 project/assembly_name="Anima Party"
