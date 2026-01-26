@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0e4d9518-e3d9-467b-8ef8-9197db49d954" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Anima Party.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Anima Party.sln" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Folder.DotSettings.user" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/abilities/crouch_ability_3d.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/abilities/crouch_ability_3d.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/abilities/fly_ability_3d.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/abilities/fly_ability_3d.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/abilities/jump_ability_3d.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/abilities/jump_ability_3d.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/abilities/sprint_ability_3d.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/abilities/sprint_ability_3d.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/abilities/swim_ability_3d.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/abilities/swim_ability_3d.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/abilities/walk_ability_3d.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/abilities/walk_ability_3d.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/core/character_controller_3d.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/core/character_controller_3d.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/core/controller.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/core/movement_ability_3d.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/core/movement_ability_3d.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/default_actions.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/default_actions.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/audio_interacts/grass_audio_interact.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/audio_interacts/stone_audio_interact.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/audio_interacts/water_audio_interact.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/audio_interacts/wood_audio_interact.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/audios/audio_interact.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/audios/audio_interact.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/audios/player_audios.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/audios/player_audios_3d.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/audios/player_audios_3d.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/geometry/floor.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/geometry/wall.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepdirt_1.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepdirt_1.wav.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepdirt_2.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepdirt_2.wav.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepdirt_3.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepdirt_3.wav.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepdirt_4.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepdirt_4.wav.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepdirt_5.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepdirt_5.wav.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepdirt_6.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepdirt_6.wav.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepdirt_7.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepdirt_7.wav.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepdirt_8.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepdirt_8.wav.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepsnow_1.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepsnow_1.wav.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepsnow_2.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepsnow_2.wav.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepstone_1.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepstone_1.wav.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepstone_2.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepstone_2.wav.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepstone_3.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepstone_3.wav.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepstone_4.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepstone_4.wav.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepstone_5.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepstone_5.wav.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepstone_6.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepstone_6.wav.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepstone_7.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepstone_7.wav.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepstone_8.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepstone_8.wav.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepwater_1.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepwater_1.wav.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepwater_2.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepwater_2.wav.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepwood_1.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepwood_1.wav.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepwood_2.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/jute-dh-steps/stepwood_2.wav.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/levA221.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/level.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/level.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/level.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/materials/bricks.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/materials/grass.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/materials/leaves.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/materials/rock.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/materials/water.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/materials/wood.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/physics/grass.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/physics/stone.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/physics/water.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/physics/wood.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/player.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/player.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/player.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/textures/Free DEMO Pixel Skies Background pack by Digital Moons/ReadMe.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/textures/Free DEMO Pixel Skies Background pack by Digital Moons/demo01_PixelSky.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/textures/Free DEMO Pixel Skies Background pack by Digital Moons/demo01_PixelSky.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/textures/brickwall_g.ase" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/textures/brickwall_g.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/textures/brickwall_g.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/textures/brickwall_g2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/textures/brickwall_g2.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/textures/brickwall_nes.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/textures/grass.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/textures/grass.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/textures/grass2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/textures/grass2.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/textures/grass_nes.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/textures/leaves.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/textures/leaves.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/textures/rock.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/textures/rock.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/textures/rock2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/textures/rock2.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/textures/rock_nes.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/textures/water01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/textures/water01.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/textures/wood.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/textures/wood.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/underwater.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/example/main/water_area_3d.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/fps/bob/bob_curve.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/fps/bob/head_bob.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/fps/bob/head_bob.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/fps/bob/jump_curve.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/fps/bob/timed_bob_curve.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/fps/bob/timed_bob_curve.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/fps/fps_controller_3d.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/fps/fps_controller_3d.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/fps/fps_controller_3d.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/fps/head_movement_3d.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/fps/head_movement_3d.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/plugin.cfg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/plugin.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/character-controller/plugin.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/godot-git-plugin/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/godot-git-plugin/THIRDPARTY.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/godot-git-plugin/git_plugin.gdextension" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/godot-git-plugin/git_plugin.gdextension.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/godot-git-plugin/linux/libgit_plugin.linux.editor.x86_64.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/godot-git-plugin/macos/libgit_plugin.macos.editor.universal.dylib" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/godot-git-plugin/windows/libgit_plugin.windows.editor.x86_64.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/godot-git-plugin/windows/~libgit_plugin.windows.editor.x86_64.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/assets/PhantomCameraBtnPrimaryDefault.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/assets/PhantomCameraBtnPrimaryDefault.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/assets/PhantomCameraBtnPrimaryHover.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/assets/PhantomCameraBtnPrimaryHover.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/credits.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/example_scenes/2D/2d_example_scene.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/example_scenes/2D/2d_follow_framed_example_scene.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/example_scenes/2D/2d_follow_group_example_scene.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/example_scenes/2D/2d_follow_path_example_scene.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/example_scenes/2D/2d_limit_example_scene.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/example_scenes/2D/2d_noise_example_scene.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/example_scenes/2D/2d_tweening_example_scene.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/example_scenes/2D/sub_scenes/playable_character_2d.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/example_scenes/3D/3d_example_scene.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/example_scenes/3D/3d_follow_framed_example_scene.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/example_scenes/3D/3d_follow_glued_example_scene.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/example_scenes/3D/3d_follow_group_example_scene.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/example_scenes/3D/3d_follow_path_example_scene.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/example_scenes/3D/3d_follow_simple_example_scene.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/example_scenes/3D/3d_follow_third_person_attribtues_example_scene.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/example_scenes/3D/3d_follow_third_person_example_scene.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/example_scenes/3D/3d_look_at_example_scene.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/example_scenes/3D/3d_noise_example_scene.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/example_scenes/3D/3d_tweening_example_scene.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/example_scenes/3D/sub_scenes/playable_character_3d.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/example_scenes/3D/sub_scenes/playable_character_third_person_3d.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/models/3d_cube_dark.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/resources/tween/fixed_camera_tween.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/resources/tween/inventory_phantom_camera_2d_tween.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/resources/tween/item_focus_phantom_camera_2d_tween.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/resources/tween/player_phantom_camera_2d_tween.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/resources/tween/player_phantom_camera_3d_tween.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/scripts/2D/2d_room_limit_tween.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/scripts/2D/2d_room_limit_tween.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/scripts/2D/2d_trigger_area.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/scripts/2D/2d_trigger_area.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/scripts/2D/player_character_body_2d.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/scripts/2D/player_character_body_2d.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/scripts/3D/3d_trigger_area.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/scripts/3D/3d_trigger_area.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/scripts/3D/npc.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/scripts/3D/npc.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/scripts/3D/path_follow.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/scripts/3D/path_follow.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/scripts/3D/player_controller.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/scripts/3D/player_controller.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/scripts/3D/player_controller_first_person.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/scripts/3D/player_controller_first_person.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/scripts/3D/player_controller_third_person.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/scripts/3D/player_controller_third_person.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/textures/2D/inventory_container.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/textures/2D/inventory_container.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/textures/2D/level_spritesheet.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/textures/2D/level_spritesheet.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/textures/2D/phantom_camera_2d_sprite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/textures/2D/phantom_camera_2d_sprite.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/textures/2D/player_sprite.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/textures/2D/player_sprite.svg.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/textures/2D/sign_prompt.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/textures/2D/sign_prompt.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/textures/3D/checker_pattern_dark.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/textures/3D/checker_pattern_dark.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/textures/3D/target.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/textures/3D/target.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/ui/ui_inventory.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/examples/ui/ui_sign.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/fonts/Nunito-Black.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/fonts/Nunito-Black.ttf.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/fonts/Nunito-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/fonts/Nunito-Regular.ttf.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/misc/PriorityOverride.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/misc/PriorityOverride.svg.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_2d.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_2d.svg.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_3d.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_3d.svg.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_camera_3d_resource.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_camera_3d_resource.svg.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_gizmo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_gizmo.svg.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_glow_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_glow_logo.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_host.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_host.svg.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_logo.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_noise_emitter_2d.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_noise_emitter_2d.svg.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_noise_emitter_3d.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_noise_emitter_3d.svg.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_noise_emitter_gizmo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_noise_emitter_gizmo.svg.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_noise_resource.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_noise_resource.svg.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_tween.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_tween.svg.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_tween_director.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_tween_director.svg.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_tween_director_resource.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_tween_director_resource.svg.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_updater_panel_icon.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/phantom_camera_updater_panel_icon.svg.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/viewfinder/Camera2DIcon.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/viewfinder/Camera2DIcon.svg.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/viewfinder/Camera3DIcon.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/viewfinder/Camera3DIcon.svg.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/viewfinder/SceneTypesIcon.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/viewfinder/SceneTypesIcon.svg.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/viewfinder/Select.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/viewfinder/Select.svg.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/warning.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/icons/warning.svg.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/inspector/phantom_camera_inspector_plugin.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/inspector/phantom_camera_inspector_plugin.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/panel/editor.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/panel/editor.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/panel/updater/download_update_panel.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/panel/updater/update_button.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/panel/viewfinder/deadzone_style_box.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/panel/viewfinder/host_list/host_list.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/panel/viewfinder/host_list/host_list_item.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/panel/viewfinder/host_list/host_list_item_group.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/panel/viewfinder/viewfinder_panel.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/plugin.cfg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/plugin.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/plugin.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/gizmos/phantom_camera_3d_gizmo.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/gizmos/phantom_camera_3d_gizmo.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/gizmos/phantom_camera_3d_gizmo_plugin.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/gizmos/phantom_camera_3d_gizmo_plugin.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/gizmos/phantom_camera_noise_emitter_gizmo_plugin_3d.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/gizmos/phantom_camera_noise_emitter_gizmo_plugin_3d.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/managers/PhantomCameraManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/managers/PhantomCameraManager.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/managers/phantom_camera_manager.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/managers/phantom_camera_manager.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/panel/editor.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/panel/editor.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/panel/updater/download_update_panel.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/panel/updater/download_update_panel.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/panel/updater/update_button.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/panel/updater/update_button.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/panel/updater/updater_constants.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/panel/updater/updater_constants.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/panel/viewfinder/host_list.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/panel/viewfinder/host_list.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/panel/viewfinder/host_list_item.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/panel/viewfinder/host_list_item.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/panel/viewfinder/viewfinder.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/panel/viewfinder/viewfinder.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera/PhantomCamera.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera/PhantomCamera.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera/PhantomCamera2D.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera/PhantomCamera2D.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera/PhantomCamera3D.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera/PhantomCamera3D.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera/PhantomCameraNoiseEmitter2D.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera/PhantomCameraNoiseEmitter2D.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera/PhantomCameraNoiseEmitter3D.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera/PhantomCameraNoiseEmitter3D.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera/PhantomCameraTweenDirector.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera/PhantomCameraTweenDirector.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera/phantom_camera_constants.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera/phantom_camera_constants.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera/phantom_camera_noise_emitter_2d.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera/phantom_camera_noise_emitter_2d.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera/phantom_camera_noise_emitter_3d.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera/phantom_camera_noise_emitter_3d.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera/phantom_camera_tween_director.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera/phantom_camera_tween_director.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera_host/PhantomCameraHost.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera_host/PhantomCameraHost.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/resources/Camera3DResource.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/resources/Camera3DResource.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/resources/PhantomCameraNoise2D.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/resources/PhantomCameraNoise2D.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/resources/PhantomCameraNoise3D.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/resources/PhantomCameraNoise3D.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/resources/PhantomCameraTween.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/resources/PhantomCameraTween.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/resources/TweenDirectorResource.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/resources/TweenDirectorResource.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/resources/camera_3d_resource.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/resources/camera_3d_resource.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/resources/phantom_camera_noise_2d.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/resources/phantom_camera_noise_2d.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/resources/phantom_camera_noise_3d.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/resources/phantom_camera_noise_3d.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/resources/tween_director_resource.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/resources/tween_director_resource.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/resources/tween_resource.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/scripts/resources/tween_resource.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/themes/button_focus.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/themes/button_hover.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/themes/button_normal.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/phantom_camera/themes/theme.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../anima-party.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../models/characters/VR Guy.blend.import" beforeDir="false" afterPath="$PROJECT_DIR$/../../models/characters/VR Guy.blend.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../models/characters/VR Guy.blend1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../models/characters/archer+3d+model.glb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../models/characters/archer+3d+model.glb.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../models/characters/archer+3d+model_archer3dmodel_basecolor.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../models/characters/archer+3d+model_archer3dmodel_basecolor.jpg.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../models/characters/robot+funko+pop+3d+model.glb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../models/characters/robot+funko+pop+3d+model.glb.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../models/characters/robot+funko+pop+3d+model_robotfunkopop3dmodel_basecolor.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../models/characters/robot+funko+pop+3d+model_robotfunkopop3dmodel_basecolor.jpg.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../models/characters/textures/Image_0.jpg.import" beforeDir="false" afterPath="$PROJECT_DIR$/../../models/characters/textures/Image_0.jpg.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../models/characters/textures/Image_1.jpg.import" beforeDir="false" afterPath="$PROJECT_DIR$/../../models/characters/textures/Image_1.jpg.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../models/characters/textures/Image_2.jpg.import" beforeDir="false" afterPath="$PROJECT_DIR$/../../models/characters/textures/Image_2.jpg.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../models/default.obj.import" beforeDir="false" afterPath="$PROJECT_DIR$/../../models/default.obj.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/../../../project.godot" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="38mtILwPLXM9z1ClQiQ1CmTb0d1" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0e4d9518-e3d9-467b-8ef8-9197db49d954" name="Changes" comment="" />
+      <created>1769416496954</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1769416496954</updated>
+      <workItem from="1769416501212" duration="30000" />
+      <workItem from="1769416544423" duration="19000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.OperationCanceledException" breakIfHandledByOtherCode="false" displayValue="System.OperationCanceledException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.Tasks.TaskCanceledException" breakIfHandledByOtherCode="false" displayValue="System.Threading.Tasks.TaskCanceledException" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

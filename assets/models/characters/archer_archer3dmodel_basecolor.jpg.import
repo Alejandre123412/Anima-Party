@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbf3esx8nc67d"
-path.s3tc="res://.godot/imported/Image_1.jpg-e3f3c6f0aa961407ce4a378915ab4385.s3tc.ctex"
+uid="uid://clm64qhxqqc3m"
+path.s3tc="res://.godot/imported/archer_archer3dmodel_basecolor.jpg-1fc19ae099722f25b0a4759066d72a57.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "97f94352cdb6480805e3799c2a3a18d0"
+}
 
 [deps]
 
-source_file="res://assets/models/characters/textures/Image_1.jpg"
-dest_files=["res://.godot/imported/Image_1.jpg-e3f3c6f0aa961407ce4a378915ab4385.s3tc.ctex"]
+source_file="res://assets/models/characters/archer_archer3dmodel_basecolor.jpg"
+dest_files=["res://.godot/imported/archer_archer3dmodel_basecolor.jpg-1fc19ae099722f25b0a4759066d72a57.s3tc.ctex"]
 
 [params]
 

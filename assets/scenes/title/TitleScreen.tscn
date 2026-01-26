@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1cvoryma1p2d"]
+[gd_scene load_steps=5 format=3 uid="uid://c1cvoryma1p2d"]
 
-[ext_resource type="Script" uid="uid://yvwbxhcqkju5" path="res://assets/script/effects/TitleBackground.gd" id="1_ak2if"]
 [ext_resource type="Script" uid="uid://geqkkbpfbcwa" path="res://assets/scenes/title/TitleScreen.cs" id="2_60wdv"]
 [ext_resource type="PackedScene" uid="uid://brp67mf12q5g6" path="res://assets/scenes/Jugadores/PlayerCount.tscn" id="3_vj26a"]
 
@@ -19,7 +18,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ak2if")
+script = ExtResource("2_60wdv")
+_nextScene = ExtResource("3_vj26a")
 
 [node name="NightBackground" type="TextureRect" parent="."]
 layout_mode = 1
@@ -83,4 +83,3 @@ vertical_alignment = 2
 
 [node name="SceneController" type="Node" parent="."]
 script = ExtResource("2_60wdv")
-nextScene = ExtResource("3_vj26a")

@@ -13,10 +13,10 @@ ambient_light_source = 3
 ambient_light_color = Color(0, 0.49387813, 0.8794313, 1)
 ambient_light_energy = 8.0
 
-[node name="CharacterViewer" type="Node3D" node_paths=PackedStringArray("uiRoot")]
+[node name="CharacterViewer" type="Node3D" node_paths=PackedStringArray("_uiRoot")]
 script = ExtResource("1_miedh")
-nextScene = ExtResource("2_y7tdq")
-uiRoot = NodePath("UI/ViewPorts")
+_nextScene = ExtResource("2_y7tdq")
+_uiRoot = NodePath("UI/ViewPorts")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3

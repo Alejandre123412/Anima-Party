@@ -68,4 +68,4 @@ horizontal_alignment = 1
 
 [node name="PlayerCount" type="Node" parent="."]
 script = ExtResource("1_5t6or")
-nextScene = ExtResource("2_d5ncu")
+_nextScene = ExtResource("2_d5ncu")
