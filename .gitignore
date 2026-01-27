@@ -2,5 +2,3 @@
 .godot/
 /android/
 *.DotSettings.user
-*.csproj
-*.sln

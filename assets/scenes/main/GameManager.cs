@@ -33,30 +33,42 @@ public partial class GameManager : Node
 			MoveLeader(_leader, dt);
 
 		MoveFollowers(dt);
-		UpdateCamera(dt);
+
+		UpdateCameraLook();
 	}
+
 
 	#region Setup
 	private void SetupPlayerLine()
 	{
 		var players = PlayerData.Instance.Players;
+
+		if (PlayersRoot == null)
+		{
+			GD.PrintErr("PlayersRoot no está asignado.");
+			return;
+		}
+
 		for (int i = 0; i < players.Count; i++)
 		{
-			var node = players[i].player;
-			if (node == null) continue;
+			if (players[i].player is not Node3D body)
+				continue;
 
-			// ❌ Problema estaba aquí
-			// PlayersRoot.AddChild(node);
-
-			// ✅ Solución: quitar del padre actual si lo tiene
-			if (node.GetParent() != PlayersRoot)
+			// Asegurar jerarquía
+			if (body.GetParent() != PlayersRoot)
 			{
-				node.GetParent()?.RemoveChild(node);
-				PlayersRoot.AddChild(node);
+				body.GetParent()?.RemoveChild(body);
+				PlayersRoot.AddChild(body);
 			}
 
-			node.GlobalPosition = new Vector3(i * PlayerSpacing, 0, 0);
+			// Posición relativa al PlayersRoot (spawn)
+			Vector3 localOffset = new Vector3(i * PlayerSpacing, 0f, 0f);
+			body.GlobalPosition = PlayersRoot.GlobalPosition + localOffset;
 
+			// Asegurar que miran al centro de la isla (0,0,0)
+			body.LookAt(Vector3.Zero, Vector3.Up);
+
+			// Primer jugador = líder
 			if (i == 0)
 				_leader = players[i];
 		}
@@ -67,8 +79,7 @@ public partial class GameManager : Node
 	#region Movement
 	private void MoveLeader(Player leaderPlayer, float dt)
 	{
-		Node3D node = leaderPlayer.player;
-		if (node == null) return;
+		if (leaderPlayer.player is not CharacterBody3D body) return;
 
 		Vector3 inputDir = Vector3.Zero;
 
@@ -77,34 +88,46 @@ public partial class GameManager : Node
 		if (Input.IsActionPressed("ui_left")) inputDir.X -= 1;
 		if (Input.IsActionPressed("ui_right")) inputDir.X += 1;
 
-		if (inputDir.Length() > 0)
+		if (inputDir == Vector3.Zero)
 		{
-			inputDir = inputDir.Normalized();
-			node.GlobalPosition += inputDir * MoveSpeed * dt;
-			node.LookAt(node.GlobalPosition + inputDir, Vector3.Up);
+			body.Velocity = Vector3.Zero;
+			return;
 		}
+
+		inputDir = inputDir.Normalized();
+		body.Velocity = inputDir * MoveSpeed;
+		body.MoveAndSlide();
+
+		body.LookAt(body.GlobalPosition + inputDir, Vector3.Up);
 	}
 
 	private void MoveFollowers(float dt)
 	{
 		for (int i = 1; i < PlayerData.Instance.PlayerCount; i++)
 		{
-			Node3D follower = PlayerData.Instance.Players[i].player;
-			Node3D target = PlayerData.Instance.Players[i - 1].player;
+			if (PlayerData.Instance.Players[i].player is not CharacterBody3D follower)
+				continue;
 
-			if (follower == null || target == null) continue;
+			if (PlayerData.Instance.Players[i - 1].player is not CharacterBody3D target)
+				continue;
 
-			Vector3 dir = target.GlobalPosition - follower.GlobalPosition;
-			float dist = dir.Length();
+			Vector3 toTarget = target.GlobalPosition - follower.GlobalPosition;
+			float dist = toTarget.Length();
 
-			if (dist > FollowDistance)
+			if (dist < FollowDistance)
 			{
-				dir = dir.Normalized();
-				follower.GlobalPosition += dir * MoveSpeed * dt;
-				follower.LookAt(target.GlobalPosition, Vector3.Up);
+				follower.Velocity = Vector3.Zero;
+				continue;
 			}
+
+			Vector3 dir = toTarget.Normalized();
+			follower.Velocity = dir * MoveSpeed;
+			follower.MoveAndSlide();
+
+			follower.LookAt(target.GlobalPosition, Vector3.Up);
 		}
 	}
+
 	#endregion
 
 	#region Camera
@@ -137,21 +160,28 @@ public partial class GameManager : Node
 		MainCamera.LookAt(center, Vector3.Up);
 	}
 
-	private void UpdateCamera(float dt)
+	private void UpdateCameraLook()
 	{
-		if (MainCamera == null || _leader == null || _leader.player == null) return;
+		if (MainCamera == null) return;
 
-		Vector3 leaderPos = _leader.player.GlobalPosition;
-		Vector3 targetPos = leaderPos - _leader.player.GlobalTransform.Basis.Z * CameraDistance;
-		targetPos.Y += CameraHeight;
-
-		// Si la distancia es muy pequeña, ponla directamente
-		if ((MainCamera.GlobalPosition - targetPos).Length() < 0.01f)
-			MainCamera.GlobalPosition = targetPos;
-		else
-			MainCamera.GlobalPosition = MainCamera.GlobalPosition.Lerp(targetPos, CameraLerpSpeed * dt);
-
-		MainCamera.LookAt(leaderPos, Vector3.Up);
+		Vector3 center = GetPlayersCenter();
+		MainCamera.LookAt(center, Vector3.Up);
 	}
+
+	private Vector3 GetPlayersCenter()
+	{
+		Vector3 sum = Vector3.Zero;
+		int count = 0;
+
+		foreach (var p in PlayerData.Instance.Players)
+		{
+			if (p.player == null) continue;
+			sum += p.player.GlobalPosition;
+			count++;
+		}
+
+		return count > 0 ? sum / count : Vector3.Zero;
+	}
+
 	#endregion
 }

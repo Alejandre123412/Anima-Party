@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://b30c6v0mv0q7n"]
+
+[node name="ModoMinijuego" type="Node3D"]
+
+[node name="Cueva" type="Node3D" parent="."]

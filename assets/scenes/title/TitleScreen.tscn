@@ -83,3 +83,4 @@ vertical_alignment = 2
 
 [node name="SceneController" type="Node" parent="."]
 script = ExtResource("2_60wdv")
+_nextScene = ExtResource("3_vj26a")
