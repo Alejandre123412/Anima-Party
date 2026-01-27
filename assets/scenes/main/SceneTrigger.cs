@@ -1,46 +1,56 @@
 using Godot;
-
-namespace AnimaParty.assets.scenes.main;
+using AnimaParty.assets.script.types;
 
 public partial class SceneTrigger : Area3D
 {
-    [Export] public PackedScene TargetScenePath; // Escena a la que se va
-    [Export] public string InteractAction = "ui_accept"; // Botón para interactuar (A)
+    [Export] public NodePath LabelPath;
+    [Export] public PackedScene SceneToLoad;
 
-    private bool playerInZone = false;
-    private Node3D player;
+    private Label3D _label;
+    private PlayeableCharacter3D _player;
 
     public override void _Ready()
     {
-        this.BodyEntered += OnBodyEntered;
-        this.BodyExited += OnBodyExited;
+        if (!LabelPath.IsEmpty)
+            _label = GetNode<Label3D>(LabelPath);
+
+        if (_label != null)
+            _label.Visible = false;
+
+        BodyEntered += OnBodyEntered;
+        BodyExited += OnBodyExited;
     }
 
-    private void OnBodyEntered(Node3D body)
+    private void OnBodyEntered(Node body)
     {
-        if (body is PlayerJugable)
+        if (body is PlayeableCharacter3D player)
         {
-            playerInZone = true;
-            player = body;
-            GD.Print("Jugador en zona: pulsa A para entrar");
+            _player = player;
+
+            if (_label != null)
+                _label.Visible = true;
+
+            // Conectamos la señal correctamente
+            _player.Connect("ActionPressedEventHandler", new Callable(this, nameof(OnPlayerActionPressed)));
         }
     }
 
-    private void OnBodyExited(Node3D body)
+    private void OnBodyExited(Node body)
     {
-        if (body == player)
+        if (body is PlayeableCharacter3D player)
         {
-            playerInZone = false;
-            player = null;
+            if (_label != null)
+                _label.Visible = false;
+
+            // Desconectamos la señal
+            player.Disconnect("ActionPressedEventHandler", new Callable(this, nameof(OnPlayerActionPressed)));
+            _player = null;
         }
     }
 
-    public override void _Process(double delta)
+    private void OnPlayerActionPressed()
     {
-        if (playerInZone && Input.IsActionJustPressed(InteractAction))
-        {
-            GD.Print($"Cambiando a escena {TargetScenePath}");
-            GetTree().ChangeSceneToPacked(TargetScenePath);
-        }
+        if (SceneToLoad != null)
+            GetTree().ChangeSceneToPacked(SceneToLoad);
     }
 }

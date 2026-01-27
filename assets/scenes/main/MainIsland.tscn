@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://du1d7h4ppjh64"]
+[gd_scene load_steps=9 format=3 uid="uid://du1d7h4ppjh64"]
 
 [ext_resource type="PackedScene" uid="uid://gkih5m4065kj" path="res://assets/scenes/main/Island.tscn" id="1_mhati"]
 [ext_resource type="Script" uid="uid://dptvwp02jnho" path="res://assets/scenes/main/GameManager.cs" id="3_mhati"]
+[ext_resource type="PackedScene" uid="uid://ddel0h74hwegd" path="res://assets/scenes/Button.tscn" id="4_hnskd"]
 [ext_resource type="Script" uid="uid://j6fu2w8uufdy" path="res://assets/scenes/main/SceneTrigger.cs" id="4_rkp36"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hnskd"]
@@ -19,14 +20,14 @@ ambient_light_color = Color(1, 1, 1, 1)
 
 [node name="MainIsland" type="Node3D"]
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="MainCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.98562986, 0.16891946, 0, -0.16891946, 0.98562986, 0, 4.3629484, 0)
+fov = 60.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 27.50235, 0)
 
 [node name="Island" parent="." instance=ExtResource("1_mhati")]
-physics_interpolation_mode = 2
 
 [node name="Players" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9687233, -6.48437)
@@ -34,17 +35,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9687233, -6.48437)
 [node name="Node" type="Node" parent="." node_paths=PackedStringArray("PlayersRoot", "MainCamera")]
 script = ExtResource("3_mhati")
 PlayersRoot = NodePath("../Players")
-MainCamera = NodePath("../Camera3D")
+MainCamera = NodePath("../MainCamera")
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.246017, 0, 0)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("4_rkp36")
+LabelPath = NodePath("Label3D")
+SceneToLoad = ExtResource("4_hnskd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 shape = SubResource("BoxShape3D_hnskd")
+
+[node name="Label3D" type="Label3D" parent="Area3D"]
+transform = Transform3D(0, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, 0, 0, 2.3682775, 0)
+text = "Pulsa A"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(130, 0, 0, 0, -5.6824806e-06, 1, 0, -130, -4.371139e-08, 0, 0, 0)

@@ -6,182 +6,108 @@ namespace AnimaParty.assets.scenes.main;
 
 public partial class GameManager : Node
 {
-	#region Exports
-	[Export] public Node3D PlayersRoot;
-	[Export] public Camera3D MainCamera;
-	[Export] public float PlayerSpacing = 2.0f;
-	[Export] public float MoveSpeed = 5.0f;
-	[Export] public float FollowDistance = 1.5f;
-	[Export] public float CameraHeight = 5.0f;
-	[Export] public float CameraDistance = 6.0f;
-	[Export] public float CameraLerpSpeed = 5.0f;
-	#endregion
+    #region Exports
+    [Export] public Node3D PlayersRoot;
+    [Export] public Camera3D MainCamera;
 
-	private Player _leader;
+    [Export] public float PlayerSpacing = 2f;
+    [Export] public float MoveSpeed = 5f;
 
-	public override void _Ready()
-	{
-		SetupPlayerLine();
-		SetupCamera();
-	}
+    [Export] public float CameraHeight = 10f;     // Altura fija
+    [Export] public float CameraDistance = 10f;   // Distancia del jugador
+    [Export] public float CameraRotateSpeed = 2f; // Velocidad de giro de cámara
+    #endregion
 
-	public override void _Process(double delta)
-	{
-		float dt = (float)delta;
+    private Player _leader;
 
-		if (_leader != null)
-			MoveLeader(_leader, dt);
+    public override void _Ready()
+    {
+        SetupPlayerLine();
+        SetupCamera();
+    }
 
-		MoveFollowers(dt);
+    public override void _Process(double delta)
+    {
+        UpdateCamera((float)delta);
+    }
 
-		UpdateCameraLook();
-	}
+    #region Setup Players
+    private void SetupPlayerLine()
+    {
+        var players = PlayerData.Instance.Players;
+        if (PlayersRoot == null)
+        {
+            GD.PrintErr("PlayersRoot no asignado.");
+            return;
+        }
 
+        for (int i = 0; i < players.Count; i++)
+        {
+            if (players[i].player is not Node3D body) 
+                continue;
 
-	#region Setup
-	private void SetupPlayerLine()
-	{
-		var players = PlayerData.Instance.Players;
+            if (body.GetParent() != PlayersRoot)
+            {
+                body.GetParent()?.RemoveChild(body);
 
-		if (PlayersRoot == null)
-		{
-			GD.PrintErr("PlayersRoot no está asignado.");
-			return;
-		}
+                // Creamos CharacterBody3D
+                var player = new script.types.PlayeableCharacter3D();
 
-		for (int i = 0; i < players.Count; i++)
-		{
-			if (players[i].player is not Node3D body)
-				continue;
+                // Collider
+                var collision = new CollisionShape3D
+                {
+                    Shape = new CapsuleShape3D { Radius = 0.5f, Height = 1.8f },
+                    Position = new Vector3(0, 0.9f, 0)
+                };
+                player.AddChild(collision);
 
-			// Asegurar jerarquía
-			if (body.GetParent() != PlayersRoot)
-			{
-				body.GetParent()?.RemoveChild(body);
-				PlayersRoot.AddChild(body);
-			}
+                // Modelo
+                player.AddChild(body);
+                player.Camera=MainCamera;
+                PlayersRoot.AddChild(player);
+            }
 
-			// Posición relativa al PlayersRoot (spawn)
-			Vector3 localOffset = new Vector3(i * PlayerSpacing, 0f, 0f);
-			body.GlobalPosition = PlayersRoot.GlobalPosition + localOffset;
+            // Posición inicial en línea
+            Vector3 offset = new Vector3(i * PlayerSpacing, 0, 0);
+            body.GlobalPosition = PlayersRoot.GlobalPosition + offset;
+            body.LookAt(Vector3.Zero, Vector3.Up);
 
-			// Asegurar que miran al centro de la isla (0,0,0)
-			body.LookAt(Vector3.Zero, Vector3.Up);
+            if (i == 0)
+                _leader = players[i];
+        }
+    }
+    #endregion
 
-			// Primer jugador = líder
-			if (i == 0)
-				_leader = players[i];
-		}
-	}
+    #region Camera
+    private void SetupCamera()
+    {
+        if (MainCamera == null) return;
 
-	#endregion
+        // Fija la cámara en el centro de la plaza
+        MainCamera.GlobalPosition = new Vector3(0, CameraHeight, 0);
 
-	#region Movement
-	private void MoveLeader(Player leaderPlayer, float dt)
-	{
-		if (leaderPlayer.player is not CharacterBody3D body) return;
+        // Mirando inicialmente al líder
+        if (_leader != null)
+        {
+            Vector3 leaderPos = (_leader.player as Node3D).GlobalPosition;
+            MainCamera.LookAt(leaderPos, Vector3.Up);
+        }
+    }
 
-		Vector3 inputDir = Vector3.Zero;
+    private void UpdateCamera(float delta)
+    {
+        if (MainCamera == null || _leader == null) return;
 
-		if (Input.IsActionPressed("ui_up")) inputDir.Z -= 1;
-		if (Input.IsActionPressed("ui_down")) inputDir.Z += 1;
-		if (Input.IsActionPressed("ui_left")) inputDir.X -= 1;
-		if (Input.IsActionPressed("ui_right")) inputDir.X += 1;
+        Vector3 leaderPos = (_leader.player as Node3D).GlobalPosition;
 
-		if (inputDir == Vector3.Zero)
-		{
-			body.Velocity = Vector3.Zero;
-			return;
-		}
+        // Solo giramos la cámara alrededor de Y para mirar al líder
+        Vector3 dirToLeader = (leaderPos - MainCamera.GlobalPosition).Normalized();
+        float targetYaw = Mathf.Atan2(-dirToLeader.X, -dirToLeader.Z);
 
-		inputDir = inputDir.Normalized();
-		body.Velocity = inputDir * MoveSpeed;
-		body.MoveAndSlide();
-
-		body.LookAt(body.GlobalPosition + inputDir, Vector3.Up);
-	}
-
-	private void MoveFollowers(float dt)
-	{
-		for (int i = 1; i < PlayerData.Instance.PlayerCount; i++)
-		{
-			if (PlayerData.Instance.Players[i].player is not CharacterBody3D follower)
-				continue;
-
-			if (PlayerData.Instance.Players[i - 1].player is not CharacterBody3D target)
-				continue;
-
-			Vector3 toTarget = target.GlobalPosition - follower.GlobalPosition;
-			float dist = toTarget.Length();
-
-			if (dist < FollowDistance)
-			{
-				follower.Velocity = Vector3.Zero;
-				continue;
-			}
-
-			Vector3 dir = toTarget.Normalized();
-			follower.Velocity = dir * MoveSpeed;
-			follower.MoveAndSlide();
-
-			follower.LookAt(target.GlobalPosition, Vector3.Up);
-		}
-	}
-
-	#endregion
-
-	#region Camera
-	private void SetupCamera()
-	{
-		if (MainCamera == null || PlayersRoot == null) return;
-
-		// Encuentra el centro de la fila de jugadores
-		Vector3 min = new Vector3(float.MaxValue, 0, float.MaxValue);
-		Vector3 max = new Vector3(float.MinValue, 0, float.MinValue);
-
-		foreach (Node3D child in PlayersRoot.GetChildren())
-		{
-			min = new Vector3(
-				Mathf.Min(min.X, child.GlobalPosition.X),
-				Mathf.Min(min.Y, child.GlobalPosition.Y),
-				Mathf.Min(min.Z, child.GlobalPosition.Z)
-			);
-			max = new Vector3(
-				Mathf.Max(max.X, child.GlobalPosition.X),
-				Mathf.Max(max.Y, child.GlobalPosition.Y),
-				Mathf.Max(max.Z, child.GlobalPosition.Z)
-			);
-		}
-
-		Vector3 center = (min + max) * 0.5f;
-
-		// Posición de la cámara atrás y arriba de la fila
-		MainCamera.GlobalPosition = center + new Vector3(0, CameraHeight, CameraDistance);
-		MainCamera.LookAt(center, Vector3.Up);
-	}
-
-	private void UpdateCameraLook()
-	{
-		if (MainCamera == null) return;
-
-		Vector3 center = GetPlayersCenter();
-		MainCamera.LookAt(center, Vector3.Up);
-	}
-
-	private Vector3 GetPlayersCenter()
-	{
-		Vector3 sum = Vector3.Zero;
-		int count = 0;
-
-		foreach (var p in PlayerData.Instance.Players)
-		{
-			if (p.player == null) continue;
-			sum += p.player.GlobalPosition;
-			count++;
-		}
-
-		return count > 0 ? sum / count : Vector3.Zero;
-	}
-
-	#endregion
+        // Obtenemos la rotación actual
+        Vector3 currentRot = MainCamera.Rotation;
+        currentRot.Y = Mathf.LerpAngle(currentRot.Y, targetYaw, delta * CameraRotateSpeed);
+        MainCamera.Rotation = currentRot;
+    }
+    #endregion
 }
