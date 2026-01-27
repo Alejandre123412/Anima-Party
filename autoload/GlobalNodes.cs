@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using AnimaParty.assets.script.types;
 using Godot;
 
 namespace AnimaParty.autoload;
@@ -9,6 +10,7 @@ public partial class GlobalNodes : Node
 
     // Lista de todos los personajes
     public List<Node3D> Characters { get; } = new();
+    public PlayeableCharacter3D?[] CharacterSlots = new PlayeableCharacter3D?[4];
 
     public override void _Ready()
     {

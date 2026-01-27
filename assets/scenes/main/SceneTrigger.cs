@@ -1,13 +1,17 @@
-using Godot;
 using AnimaParty.assets.script.types;
+using AnimaParty.autoload;
+using Godot;
+
+namespace AnimaParty.assets.scenes.main;
 
 public partial class SceneTrigger : Area3D
 {
     [Export] public NodePath LabelPath;
     [Export] public PackedScene SceneToLoad;
+    [Export] private Node3D PlayerRoot; 
 
     private Label3D _label;
-    private PlayeableCharacter3D _player;
+    private bool _playerInside = false;
 
     public override void _Ready()
     {
@@ -17,40 +21,75 @@ public partial class SceneTrigger : Area3D
         if (_label != null)
             _label.Visible = false;
 
+        Monitoring = true;
+
         BodyEntered += OnBodyEntered;
         BodyExited += OnBodyExited;
     }
 
+    public void AcceptInput()
+    {
+        GD.Print("Jugador accepted");
+        if (!_playerInside)
+            return;
+        PutEveryThingInGlobal(PlayerRoot);
+        LoadScene();
+        
+    }
+
+    private void PutEveryThingInGlobal(Node3D root)
+    {
+        var children = root.GetChildren();
+        var i = 0;
+        foreach (var child in children)
+        {
+            if (i>=4)
+                break;
+            if (child is not PlayeableCharacter3D player)
+                return;
+            GlobalNodes.Instance.CharacterSlots[i]=player;
+            i++;
+        }
+    }
+    
     private void OnBodyEntered(Node body)
     {
-        if (body is PlayeableCharacter3D player)
+        GD.Print("Jugador entered");
+        if (body is PlayeableCharacter3D)
         {
-            _player = player;
+            _playerInside = true;
 
             if (_label != null)
                 _label.Visible = true;
 
-            // Conectamos la señal correctamente
-            _player.Connect("ActionPressedEventHandler", new Callable(this, nameof(OnPlayerActionPressed)));
+            GD.Print("Jugador dentro del Area");
         }
     }
 
     private void OnBodyExited(Node body)
     {
-        if (body is PlayeableCharacter3D player)
+        GD.Print("Jugador exited");
+        if (body is PlayeableCharacter3D)
         {
+            _playerInside = false;
+
             if (_label != null)
                 _label.Visible = false;
 
-            // Desconectamos la señal
-            player.Disconnect("ActionPressedEventHandler", new Callable(this, nameof(OnPlayerActionPressed)));
-            _player = null;
+            GD.Print("Jugador fuera del Area");
         }
     }
 
-    private void OnPlayerActionPressed()
+    private void LoadScene()
     {
         if (SceneToLoad != null)
+        {
+            GD.Print("Cambiando escena");
             GetTree().ChangeSceneToPacked(SceneToLoad);
+        }
+        else
+        {
+            GD.PrintErr("SceneToLoad no asignada");
+        }
     }
 }

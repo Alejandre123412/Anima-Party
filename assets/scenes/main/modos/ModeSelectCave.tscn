@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://b5qgcy2bwuhfn"]
+
+[node name="ModeSelectCave" type="Node3D"]
+
+[node name="ModeSelectManager" type="Node" parent="."]
+
+[node name="CameraRig" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig"]
+
+[node name="Entrances" type="Node3D" parent="."]
+
+[node name="Characters" type="Node3D" parent="."]

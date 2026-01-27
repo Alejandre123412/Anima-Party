@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using AnimaParty.assets.scenes.main;
+using Godot;
 using AnimaParty.assets.script.data;
 using AnimaParty.autoload;
 
@@ -6,7 +7,6 @@ namespace AnimaParty.assets.script.types;
 
 public partial class PlayeableCharacter3D : CharacterBody3D
 {
-    [Signal] public delegate void ActionPressedEventHandler();
     [Export] public float Speed = 5f;
     [Export] public float JumpVelocity = 4.5f;
     [Export] public float GravityMultiplier = 9.8f;
@@ -20,26 +20,23 @@ public partial class PlayeableCharacter3D : CharacterBody3D
 
     // Referencia a la cámara
     [Export] public Camera3D Camera;
+    [Export] private SceneTrigger? sceneTrigger;
 
-    public override void _Process(double delta)
+    public override void _Ready()
     {
-        // Detectar "A" y emitir señal
-        if (Input.IsActionJustPressed("ui_accept"))
-        {
-            EmitSignal(nameof(ActionPressedEventHandler));
-        }
+        sceneTrigger=GetNode("..").GetNode("..").GetNodeOrNull<SceneTrigger>("Area3D");
     }
-    
+
     public override void _PhysicsProcess(double delta)
     {
         Vector3 velocity = Velocity;
         
         if (!IsOnFloor())
             velocity += GetGravity() * (float)delta * GravityMultiplier;
-        
+        //
         // Salto
         if (Input.IsActionJustPressed("ui_accept"))
-            velocity.Y = JumpVelocity;
+            sceneTrigger?.AcceptInput();
         
         // Movimientos independientes de GameManager
         Vector2 inputDir = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
