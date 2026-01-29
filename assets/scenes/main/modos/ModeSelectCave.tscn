@@ -1,13 +1,238 @@
-[gd_scene format=3 uid="uid://b5qgcy2bwuhfn"]
+[gd_scene load_steps=7 format=3 uid="uid://b5qgcy2bwuhfn"]
+
+[ext_resource type="Script" uid="uid://b5myvgipxylbi" path="res://assets/scenes/main/modos/ModeSelectManager.cs" id="1_asakl"]
+[ext_resource type="PackedScene" uid="uid://dwv0kpjntpj45" path="res://assets/models/tourch/Tourch.blend" id="1_y2vkg"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_asakl"]
+radial_segments = 11
+rings = 5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6jsw2"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_b4xrq"]
+material = SubResource("StandardMaterial3D_6jsw2")
+size = Vector2(15, 15)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y2vkg"]
+size = Vector3(10, 0.1, 20)
 
 [node name="ModeSelectCave" type="Node3D"]
 
-[node name="ModeSelectManager" type="Node" parent="."]
+[node name="ModeSelectManager" type="Node" parent="." node_paths=PackedStringArray("Camera")]
+script = ExtResource("1_asakl")
+Camera = NodePath("../CameraRig/Camera3D")
+EntrancesPath = NodePath("../Entrances")
 
 [node name="CameraRig" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="CameraRig"]
 
 [node name="Entrances" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+
+[node name="Minigame Party" type="Node3D" parent="Entrances"]
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="Entrances/Minigame Party"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Entrances/Minigame Party/MultiMeshInstance3D"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -10.755596, 0.7132027, 1)
+mesh = SubResource("SphereMesh_asakl")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Entrances/Minigame Party/MultiMeshInstance3D"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -10.09041, 4.3723545, 1)
+mesh = SubResource("SphereMesh_asakl")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Entrances/Minigame Party/MultiMeshInstance3D"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -9.036847, 7.969824, 1)
+mesh = SubResource("SphereMesh_asakl")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Entrances/Minigame Party/MultiMeshInstance3D"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -8.009281, 11.945024, 1)
+mesh = SubResource("SphereMesh_asakl")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Entrances/Minigame Party/MultiMeshInstance3D"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 7.5151253, 0.7132027, 1)
+mesh = SubResource("SphereMesh_asakl")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Entrances/Minigame Party/MultiMeshInstance3D"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 7.2038355, 4.3723545, 1)
+mesh = SubResource("SphereMesh_asakl")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Entrances/Minigame Party/MultiMeshInstance3D"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 6.2101326, 7.969824, 1)
+mesh = SubResource("SphereMesh_asakl")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Entrances/Minigame Party/MultiMeshInstance3D"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 4.9797773, 11.942117, 1)
+mesh = SubResource("SphereMesh_asakl")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Entrances/Minigame Party/MultiMeshInstance3D"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 3.6949453, 14.897371, 1)
+mesh = SubResource("SphereMesh_asakl")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Entrances/Minigame Party/MultiMeshInstance3D"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0.43067837, 16.325191, 1)
+mesh = SubResource("SphereMesh_asakl")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Entrances/Minigame Party/MultiMeshInstance3D"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -6.091941, 15.266102, 1)
+mesh = SubResource("SphereMesh_asakl")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="Entrances/Minigame Party/MultiMeshInstance3D"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -3.4172983, 16.439396, 1)
+mesh = SubResource("SphereMesh_asakl")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="Entrances/Minigame Party/MultiMeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -1.2064896, 7.989131, 1.3568993)
+mesh = SubResource("PlaneMesh_b4xrq")
+skeleton = NodePath("../..")
+
+[node name="Tourch2" parent="Entrances/Minigame Party" instance=ExtResource("1_y2vkg")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, -9.185635, 6.7358537, 4.099908)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Entrances/Minigame Party/Tourch2"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 107.57123, 0)
+omni_range = 9.0
+
+[node name="Tourch" parent="Entrances/Minigame Party" instance=ExtResource("1_y2vkg")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 7.1244564, 6.7358537, 4.1261616)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Entrances/Minigame Party/Tourch"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 107.57123, 0)
+omni_range = 9.0
 
 [node name="Characters" type="Node3D" parent="."]
+
+[node name="Scene" type="Node3D" parent="."]
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="Scene"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Scene/MultiMeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.092324)
+mesh = SubResource("BoxMesh_y2vkg")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Scene/MultiMeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 10, -20.092)
+mesh = SubResource("BoxMesh_y2vkg")
+skeleton = NodePath("../MeshInstance3D2")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Scene/MultiMeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -10.092)
+mesh = SubResource("BoxMesh_y2vkg")
+
+[node name="MultiMeshInstance3D2" type="MultiMeshInstance3D" parent="Scene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Scene/MultiMeshInstance3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.092324)
+mesh = SubResource("BoxMesh_y2vkg")
+skeleton = NodePath("../../MultiMeshInstance3D2")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Scene/MultiMeshInstance3D2"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 10, -20.092)
+mesh = SubResource("BoxMesh_y2vkg")
+skeleton = NodePath("../MeshInstance3D2")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Scene/MultiMeshInstance3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -10.092)
+mesh = SubResource("BoxMesh_y2vkg")
+skeleton = NodePath("../../MultiMeshInstance3D2")
+
+[node name="MultiMeshInstance3D3" type="MultiMeshInstance3D" parent="Scene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Scene/MultiMeshInstance3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.092324)
+mesh = SubResource("BoxMesh_y2vkg")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Scene/MultiMeshInstance3D3"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 10, -20.092)
+mesh = SubResource("BoxMesh_y2vkg")
+skeleton = NodePath("../MeshInstance3D2")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Scene/MultiMeshInstance3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -10.092)
+mesh = SubResource("BoxMesh_y2vkg")
+
+[node name="MultiMeshInstance3D4" type="MultiMeshInstance3D" parent="Scene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Scene/MultiMeshInstance3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.092324)
+mesh = SubResource("BoxMesh_y2vkg")
+skeleton = NodePath("../../MultiMeshInstance3D2")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Scene/MultiMeshInstance3D4"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 10, -20.092)
+mesh = SubResource("BoxMesh_y2vkg")
+skeleton = NodePath("../MeshInstance3D2")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Scene/MultiMeshInstance3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -10.092)
+mesh = SubResource("BoxMesh_y2vkg")
+skeleton = NodePath("../../MultiMeshInstance3D2")
+
+[node name="MultiMeshInstance3D5" type="MultiMeshInstance3D" parent="Scene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Scene/MultiMeshInstance3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.092324)
+mesh = SubResource("BoxMesh_y2vkg")
+skeleton = NodePath("../../MultiMeshInstance3D2")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Scene/MultiMeshInstance3D5"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 10, -20.092)
+mesh = SubResource("BoxMesh_y2vkg")
+skeleton = NodePath("../MeshInstance3D2")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Scene/MultiMeshInstance3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -10.092)
+mesh = SubResource("BoxMesh_y2vkg")
+skeleton = NodePath("../../MultiMeshInstance3D2")
+
+[node name="MultiMeshInstance3D6" type="MultiMeshInstance3D" parent="Scene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Scene/MultiMeshInstance3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.092324)
+mesh = SubResource("BoxMesh_y2vkg")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Scene/MultiMeshInstance3D6"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 10, -20.092)
+mesh = SubResource("BoxMesh_y2vkg")
+skeleton = NodePath("../MeshInstance3D2")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Scene/MultiMeshInstance3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -10.092)
+mesh = SubResource("BoxMesh_y2vkg")
+
+[node name="MultiMeshInstance3D7" type="MultiMeshInstance3D" parent="Scene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Scene/MultiMeshInstance3D7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.092324)
+mesh = SubResource("BoxMesh_y2vkg")
+skeleton = NodePath("../../MultiMeshInstance3D2")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Scene/MultiMeshInstance3D7"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 10, -20.092)
+mesh = SubResource("BoxMesh_y2vkg")
+skeleton = NodePath("../MeshInstance3D2")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Scene/MultiMeshInstance3D7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -10.092)
+mesh = SubResource("BoxMesh_y2vkg")
+skeleton = NodePath("../../MultiMeshInstance3D2")

@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://dq41uwog34xkc"]
+
+[ext_resource type="Script" uid="uid://bhm1k1hrxnkfk" path="res://assets/scenes/modular/UniversalDoor3D.gd" id="1_a01go"]
+
+[node name="UniversalDoor3d" type="Node3D"]
+script = ExtResource("1_a01go")
+
+[node name="Frame" type="Node3D" parent="."]
+
+[node name="Leaf_A" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Leaf_A"]
+
+[node name="Leaf_B" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Leaf_B"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="Collider_A" type="CollisionShape3D" parent="StaticBody3D"]
+
+[node name="Collider_B" type="CollisionShape3D" parent="StaticBody3D"]
+
+[node name="PhysicsHinge" type="HingeJoint3D" parent="."]
+
+[node name="InteractionArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+
+[node name="Audio_Open" type="AudioStreamPlayer3D" parent="."]
+
+[node name="Audio_Close" type="AudioStreamPlayer3D" parent="."]
+
+[node name="Audio_Locked" type="AudioStreamPlayer3D" parent="."]

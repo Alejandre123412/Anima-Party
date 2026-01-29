@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://gkih5m4065kj" path="res://assets/scenes/main/Island.tscn" id="1_mhati"]
 [ext_resource type="Script" uid="uid://dptvwp02jnho" path="res://assets/scenes/main/GameManager.cs" id="3_mhati"]
-[ext_resource type="PackedScene" uid="uid://b30c6v0mv0q7n" path="res://assets/scenes/main/modos/ModoMinijuego.tscn" id="3_rkp36"]
+[ext_resource type="PackedScene" uid="uid://b5qgcy2bwuhfn" path="res://assets/scenes/main/modos/ModeSelectCave.tscn" id="3_rkp36"]
 [ext_resource type="Script" uid="uid://j6fu2w8uufdy" path="res://assets/scenes/main/SceneTrigger.cs" id="4_rkp36"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hnskd"]
@@ -32,12 +32,13 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2
 [node name="Players" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9687233, -6.48437)
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." node_paths=PackedStringArray("PlayerRoot")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.246017, 0, 0)
 collision_layer = 2
 script = ExtResource("4_rkp36")
 LabelPath = NodePath("Label3D")
 SceneToLoad = ExtResource("3_rkp36")
+PlayerRoot = NodePath("../Players")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
